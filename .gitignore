@@ -32,3 +32,12 @@
 *.out
 *.app
 
+/Build
+/External
+/.vs
+
+*.vcxproj
+*.filters
+*.sln
+*.txt
+*.ogg
