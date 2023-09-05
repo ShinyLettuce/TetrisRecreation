@@ -32,6 +32,11 @@ struct Level {
     void render();
 };
 
+void Level::update()
+{
+
+}
+
 void Level::render()
 {
     for (int i = 0; i < grid_height; i++)
