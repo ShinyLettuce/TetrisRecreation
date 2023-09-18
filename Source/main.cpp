@@ -1,18 +1,142 @@
 #include "raylib.h"
 
-struct Tetronimo {
-    Vector2 pos;
-    int grid[16];
+struct Tetronimo_controller
+{
+    Vector2 pos = { 0,0 };
+    Vector2 input = { 0,0 };
+    int rotation_index = 0;
+
+    enum PIECES
+    {
+        L,
+        I,
+        T,
+        J,
+        S,
+        Z,
+        O
+    };
+
+    int current_piece = NULL;
+
+    int current_grid[16] = { 0,0,0,0,
+                             0,0,0,0,
+                             0,0,0,0,
+                             0,0,0,0, };
+
+    int grid_L[16] = { 0,0,0,0,
+                       1,1,1,0,
+                       1,0,0,0,
+                       0,0,0,0, };
+
+    int grid_I[16] = { 0,0,0,0,
+                       1,1,1,1,
+                       0,0,0,0,
+                       0,0,0,0, };
+
+    int grid_T[16] = { 0,0,0,0,
+                       1,1,1,0,
+                       0,1,0,0,
+                       0,0,0,0, };
+
+    int grid_J[16] = { 0,0,0,0,
+                       1,1,1,0,
+                       0,0,1,0,
+                       0,0,0,0, };
+
+    int grid_S[16] = { 0,0,0,0,
+                       0,1,1,0,
+                       1,1,0,0,
+                       0,0,0,0, };
+
+    int grid_Z[16] = { 0,0,0,0,
+                       1,1,0,0,
+                       0,1,1,0,
+                       0,0,0,0, };
+
+    int grid_O[16] = { 0,0,0,0,
+                       0,1,1,0,
+                       0,1,1,0,
+                       0,0,0,0, };
+
+    void update();
+    void render();
+
+    void rotate();
 };
 
-struct L:Tetronimo{
+void Tetronimo_controller::update()
+{
+    input = { 0,0 };
 
-};
+    if (IsKeyDown(KEY_LEFT))
+    {
+        input.x -= 1;
+    }
+    if (IsKeyDown(KEY_RIGHT))
+    {
+        input.x += 1;
+    }
+    if (IsKeyDown(KEY_DOWN))
+    {
+        input.y += 1;
+    }
+    //if (IsKeyDown(KEY_C))
+    //{
+    //    rotate();
+    //}
+}
+
+void Tetronimo_controller::render()
+{
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            if(grid_I[j + i*4] == 1)
+            DrawRectangle(((int)pos.x * 50) + (j * 50), ((int)pos.y * 50) + (i * 50), 50, 50, BLUE);
+        }
+    }
+
+}
+
+void Tetronimo_controller::rotate()
+{
+    /*
+    for (int y = -1; y < 3; y++)
+    {
+        for (int x = -1; x < 3; x++)
+        {
+            switch (rotation_index)
+            {
+            case(1):
+                //90 degrees
+                current_grid[(x + 1) + (y + 1) * 4] = piece_grid[(-y + 1) + (x + 1) * 4];
+                break;
+            case(2):
+                //180 degrees
+                current_grid[(x + 1) + (y + 1) * 4] = piece_grid[(-x + 1) + (-y + 1) * 4];
+                break;
+            case(3):
+                //270 degrees
+                current_grid[(x + 1) + (y + 1) * 4] = piece_grid[(y + 1) + (-x + 1) * 4];
+                break;
+
+            }
+        }
+    }
+    */
+}
 
 struct Level {
+    Tetronimo_controller hello;
+
     int grid_width = 10;
     int grid_height = 18;
     int cell_pixel_side = 50;
+
+    int counter = 0;
+
 
     int grid[180] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -33,13 +157,40 @@ struct Level {
                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, };
 
+    void init();
+
+    void piece_movement();
+
     void update();
     void render();
 };
 
-void Level::update()
+void Level::init() 
 {
 
+}
+
+void Level::piece_movement()
+{
+    if (hello.input.x != 0 || hello.input.y != 0)
+    {
+        hello.pos.x += hello.input.x;
+        hello.pos.y += hello.input.y;
+    }
+
+    counter++;
+
+    if (counter == 60)
+    {
+        hello.pos.y++;
+        counter = 0;
+    }
+}
+
+void Level::update()
+{
+    hello.update();
+    piece_movement();
 }
 
 void Level::render()
@@ -51,6 +202,8 @@ void Level::render()
             DrawRectangle(j*cell_pixel_side, i*cell_pixel_side, cell_pixel_side, cell_pixel_side, WHITE);
         }
     }
+
+    hello.render();
 }
 
 int main(void)
@@ -80,15 +233,7 @@ int main(void)
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
 
-        if (IsKeyPressed(KEY_SPACE))
-        {
-            PlaySound(sound);
-        }
-
-        if (IsKeyPressed(KEY_BACKSPACE))
-        {
-            StopSound(sound);
-        }
+        level.update();
 
         // Draw
         //----------------------------------------------------------------------------------
