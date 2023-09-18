@@ -25,20 +25,20 @@
 *.lai
 *.la
 *.a
-*.lib
+#*.lib
 
 # Executables
-*.exe
+#*.exe
 *.out
 *.app
 
-/Build
-/External
+#/Build
+#/External
 /.vs
 
-*.vcxproj
-*.filters
-*.sln
-*.txt
-*.ogg
-*.user
+#*.vcxproj
+#*.filters
+#*.sln
+#*.txt
+#*.ogg
+#*.user
