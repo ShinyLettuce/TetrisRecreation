@@ -1,6 +1,11 @@
 #include "raylib.h"
 
 struct Tetronimo {
+    Vector2 pos;
+    int grid[16];
+};
+
+struct L:Tetronimo{
 
 };
 
