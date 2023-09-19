@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include <iostream>
 
 struct Tetronimo_controller
 {
@@ -93,8 +94,8 @@ void Tetronimo_controller::render()
     {
         for (int j = 0; j < 4; j++)
         {
-            if(grid_I[j + i*4] == 1)
-            DrawRectangle(((int)pos.x * 50) + (j * 50), ((int)pos.y * 50) + (i * 50), 50, 50, BLUE);
+            if(grid_S[j + i*4] == 1)
+            DrawRectangle(((int)pos.x * 50) + (j * 50), ((int)pos.y * 50) + (i * 50), 50, 50, RED);
         }
     }
 
@@ -135,7 +136,8 @@ struct Level {
     int grid_height = 18;
     int cell_pixel_side = 50;
 
-    int counter = 0;
+    int gravity_counter = 0;
+    int gravity_time = 60;
 
 
     int grid[180] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -172,19 +174,26 @@ void Level::init()
 
 void Level::piece_movement()
 {
-    if (hello.input.x != 0 || hello.input.y != 0)
+
+    if (hello.input.y == 1)
     {
-        hello.pos.x += hello.input.x;
-        hello.pos.y += hello.input.y;
+        gravity_time = 3;
+    }
+    else if(hello.input.y == 0)
+    {
+        gravity_time = 60;
     }
 
-    counter++;
+    hello.pos.x += hello.input.x;
 
-    if (counter == 60)
+
+    if (gravity_counter >= gravity_time)
     {
         hello.pos.y++;
-        counter = 0;
+        gravity_counter = 0;
     }
+
+    gravity_counter++;
 }
 
 void Level::update()
