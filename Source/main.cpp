@@ -3,8 +3,9 @@
 
 struct Tetronimo_controller
 {
-    Vector2 pos = { 0,0 };
+    Vector2 pos = { 2,0 };
     Vector2 input = { 0,0 };
+    int piece_grid_side = 4;
     int rotation_index = 0;
 
     enum PIECES
@@ -132,7 +133,7 @@ void Tetronimo_controller::rotate()
 struct Level {
     Tetronimo_controller hello;
 
-    int grid_width = 10;
+    int grid_width = 12;
     int grid_height = 18;
     int cell_pixel_side = 50;
 
@@ -140,27 +141,28 @@ struct Level {
     int gravity_time = 60;
 
 
-    int grid[180] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, };
+    int grid[216] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, };
 
     void init();
 
+    bool piece_collision(int future_pos_x, int future_pos_y);
     void piece_movement();
 
     void update();
@@ -170,6 +172,24 @@ struct Level {
 void Level::init() 
 {
 
+}
+
+bool Level::piece_collision(int future_pos_x, int future_pos_y)
+{
+    for (int i = 0; i < hello.piece_grid_side; i++)
+    {
+        for (int j = 0; j < hello.piece_grid_side; j++)
+        {
+            // Math is wrong
+            if (hello.grid_S[j + i * hello.piece_grid_side] != 0 &&
+                grid[(future_pos_x + j + future_pos_y * grid_width * i)] != 0)
+            {
+
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 void Level::piece_movement()
@@ -184,13 +204,15 @@ void Level::piece_movement()
         gravity_time = 60;
     }
 
-    hello.pos.x += hello.input.x;
-
-
-    if (gravity_counter >= gravity_time)
+    if (!piece_collision(hello.pos.x + hello.input.x, hello.pos.y + hello.input.y))
     {
-        hello.pos.y++;
-        gravity_counter = 0;
+        hello.pos.x += hello.input.x;
+
+        if (gravity_counter >= gravity_time)
+        {
+            hello.pos.y++;
+            gravity_counter = 0;
+        }
     }
 
     gravity_counter++;
@@ -208,7 +230,14 @@ void Level::render()
     {
         for (int j = 0; j < grid_width; j++)
         {
-            DrawRectangle(j*cell_pixel_side, i*cell_pixel_side, cell_pixel_side, cell_pixel_side, WHITE);
+            if (grid[j + i * grid_width] == 0)
+            {
+                DrawRectangle(j*cell_pixel_side, i*cell_pixel_side, cell_pixel_side, cell_pixel_side, WHITE);
+            }
+            if (grid[j + i * grid_width] == 1)
+            {
+                DrawRectangle(j * cell_pixel_side, i * cell_pixel_side, cell_pixel_side, cell_pixel_side, GRAY);
+            }
         }
     }
 
