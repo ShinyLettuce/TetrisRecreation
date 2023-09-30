@@ -16,10 +16,11 @@ void Tetronimo_controller::update()
     {
         input.y += 1;
     }
-    //if (IsKeyDown(KEY_C))
-    //{
+    if (IsKeyDown(KEY_C))
+    {
     //    rotate();
-    //}
+        change_piece(L);
+    }
 }
 
 void Tetronimo_controller::render()
@@ -37,6 +38,8 @@ void Tetronimo_controller::render()
 
 void Tetronimo_controller::change_piece(PIECES new_piece)
 {
+    //OPTIMIZE
+
     switch (new_piece)
     {
     case(I):
