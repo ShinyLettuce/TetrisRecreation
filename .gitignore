@@ -41,3 +41,4 @@
 *.txt
 *.ogg
 *.user
+/Build/Intermediate/Debug/raylib_template.tlog/CL.command.1.tlog
