@@ -28,7 +28,7 @@ void Tetronimo_controller::render()
     {
         for (int j = 0; j < 4; j++)
         {
-            if (shapes.grid_S[j + i * 4] == 1)
+            if (current_grid[j + i * 4] == 1)
                 DrawRectangle(((int)pos.x * 50) + (j * 50), ((int)pos.y * 50) + (i * 50), 50, 50, RED);
         }
     }

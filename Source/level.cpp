@@ -2,7 +2,7 @@
 
 void Level::init()
 {
-
+    hello.change_piece(hello.S);
 }
 
 bool Level::piece_collision(int future_pos_x, int pos_y, bool falling)
@@ -16,7 +16,7 @@ bool Level::piece_collision(int future_pos_x, int pos_y, bool falling)
     {
         for (int j = 0; j < hello.piece_grid_side; j++)
         {
-            if (hello.grid_S[j + i * hello.piece_grid_side] != 0 &&
+            if (hello.current_grid[j + i * hello.piece_grid_side] != 0 &&
                 grid[(future_pos_x + j + pos_y * grid_width + (i * 12))] != 0)
             {
 
