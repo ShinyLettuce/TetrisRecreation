@@ -162,7 +162,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\level.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\tetromino_controller.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\level.h" />
+    <ClInclude Include="Source\tetromino.h" />
+    <ClInclude Include="Source\tetromino_controller.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
