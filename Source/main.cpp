@@ -204,7 +204,7 @@ void Level::piece_movement()
         gravity_time = 60;
     }
 
-    if (!piece_collision(hello.pos.x + hello.input.x, hello.pos.y + hello.input.y))
+    if (!piece_collision((int)(hello.pos.x + hello.input.x), (int)(hello.pos.y + hello.input.y)))
     {
         hello.pos.x += hello.input.x;
 
