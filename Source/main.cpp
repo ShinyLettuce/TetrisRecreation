@@ -134,14 +134,14 @@ struct Level {
     Tetronimo_controller hello;
 
     int grid_width = 12;
-    int grid_height = 18;
+    int grid_height = 19;
     int cell_pixel_side = 50;
 
     int gravity_counter = 0;
     int gravity_time = 60;
 
 
-    int grid[216] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    int grid[228] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -158,7 +158,8 @@ struct Level {
                       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, };
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, };
 
     void init();
 
@@ -180,9 +181,8 @@ bool Level::piece_collision(int future_pos_x, int future_pos_y)
     {
         for (int j = 0; j < hello.piece_grid_side; j++)
         {
-            // Math is wrong
             if (hello.grid_S[j + i * hello.piece_grid_side] != 0 &&
-                grid[(future_pos_x + j + future_pos_y * grid_width * i)] != 0)
+                grid[(future_pos_x + j + future_pos_y * grid_width + ( i * 12 ))] != 0)
             {
 
                 return true;
