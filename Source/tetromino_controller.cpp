@@ -29,35 +29,25 @@ void Tetronimo_controller::render(Vector2 level_pos)
     {
         for (int j = 0; j < 4; j++)
         {
-
             switch (current_grid[j + i * 4])
             {
-            case(0):
-                piece_color = WHITE;
+            case(0):    piece_color = WHITE;
                 break;
-            case(1):
-                piece_color = GRAY;
+            case(1):    piece_color = GRAY;
                 break;
-            case(2):
-                piece_color = BLUE;
+            case(2):    piece_color = BLUE;
                 break;
-            case(3):
-                piece_color = RED;
+            case(3):    piece_color = RED;
                 break;
-            case(4):
-                piece_color = YELLOW;
+            case(4):    piece_color = YELLOW;
                 break;
-            case(5):
-                piece_color = GREEN;
+            case(5):    piece_color = GREEN;
                 break;
-            case(6):
-                piece_color = PURPLE;
+            case(6):    piece_color = PURPLE;
                 break;
-            case(7):
-                piece_color = DARKBLUE;
+            case(7):    piece_color = DARKBLUE;
                 break;
-            case(8):
-                piece_color = ORANGE;
+            case(8):    piece_color = ORANGE;
                 break;
             }
             if (current_grid[j + i * 4] != 0)
@@ -66,7 +56,6 @@ void Tetronimo_controller::render(Vector2 level_pos)
             }
         }
     }
-
 }
 
 void Tetronimo_controller::piece_rotation()

@@ -87,7 +87,6 @@ void Level::update()
 {
     hello.update();
     piece_movement();
-    //piece_rotation();
 }
 
 void Level::render()
@@ -98,32 +97,23 @@ void Level::render()
         {
             switch (grid[j + i * grid_width])
             {
-            case(0):
-                cell_color = WHITE;
+            case(0):    cell_color = WHITE;
                 break;
-            case(1):
-                cell_color = GRAY;
+            case(1):    cell_color = GRAY;
                 break;
-            case(2):
-                cell_color = BLUE;
+            case(2):    cell_color = BLUE;
                 break;
-            case(3):
-                cell_color = RED;
+            case(3):    cell_color = RED;
                 break;
-            case(4):
-                cell_color = YELLOW;
+            case(4):    cell_color = YELLOW;
                 break;
-            case(5):
-                cell_color = GREEN;
+            case(5):    cell_color = GREEN;
                 break;
-            case(6):
-                cell_color = PURPLE;
+            case(6):    cell_color = PURPLE;
                 break;
-            case(7):
-                cell_color = DARKBLUE;
+            case(7):    cell_color = DARKBLUE;
                 break;
-            case(8):
-                cell_color = ORANGE;
+            case(8):    cell_color = ORANGE;
                 break;
             }
 
