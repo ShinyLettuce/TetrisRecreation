@@ -5,7 +5,7 @@ void Level::init()
     hello.change_piece(hello.S);
 }
 
-bool Level::piece_collision(int future_pos_x, int pos_y, bool falling)
+bool Level::piece_collision(int future_pos_x, int pos_y)
 {
     if (falling)
     {
@@ -37,19 +37,27 @@ void Level::piece_movement()
     else if (hello.input.y == 0)
     {
         gravity_time = 60;
-        falling = true;
     }
 
-    if (!piece_collision((int)(hello.pos.x + hello.input.x), (int)(hello.pos.y + hello.input.y), falling))
+    
+    if (!piece_collision((int)(hello.pos.x + hello.input.x), (int)(hello.pos.y)))
     {
         hello.pos.x += hello.input.x;
+    }
 
-        if (gravity_counter >= gravity_time)
+    
+    if (gravity_counter >= gravity_time)
+    {
+        falling = true;
+        if (!piece_collision((int)hello.pos.x, (int)hello.pos.y))
         {
             hello.pos.y++;
             gravity_counter = 0;
         }
-
+        else
+        {
+            //lock
+        }
         falling = false;
     }
 

@@ -37,7 +37,7 @@ struct Level {
 
     void init();
 
-    bool piece_collision(int future_pos_x, int pos_y, bool falling);
+    bool piece_collision(int future_pos_x, int pos_y);
     void piece_movement();
 
     void update();
