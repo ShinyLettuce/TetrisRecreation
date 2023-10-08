@@ -120,89 +120,16 @@ void Tetronimo_controller::piece_rotation()
     rotation_index++;
 }
 
-void Tetronimo_controller::change_piece(PIECES new_piece)
+void Tetronimo_controller::change_piece(int new_piece[16], PIECES new_current_piece)
 {
-    //OPTIMIZE
+        for (int i = 0; i < piece_grid_side; i++)
+        {
+            for (int j = 0; j < piece_grid_side; j++)
+            {
+                current_grid[j + i * piece_grid_side] = new_piece[j + i * piece_grid_side];
+                reference_grid[j + i * piece_grid_side] = new_piece[j + i * piece_grid_side];
 
-    switch (new_piece)
-    {
-    case(I):
-        for (int i = 0; i < piece_grid_side; i++)
-        {
-            for (int j = 0; j < piece_grid_side; j++)
-            {
-                current_grid[j + i * piece_grid_side] = shapes.grid_I[j + i * piece_grid_side];
-                reference_grid[j + i * piece_grid_side] = shapes.grid_I[j + i * piece_grid_side];
-                current_piece = I;
             }
         }
-        break;
-    case(J):
-        for (int i = 0; i < piece_grid_side; i++)
-        {
-            for (int j = 0; j < piece_grid_side; j++)
-            {
-                current_grid[j + i * piece_grid_side] = shapes.grid_J[j + i * piece_grid_side];
-                reference_grid[j + i * piece_grid_side] = shapes.grid_J[j + i * piece_grid_side];
-                current_piece = J;
-            }
-        }
-        break;
-    case(L):
-        for (int i = 0; i < piece_grid_side; i++)
-        {
-            for (int j = 0; j < piece_grid_side; j++)
-            {
-                current_grid[j + i * piece_grid_side] = shapes.grid_L[j + i * piece_grid_side];
-                reference_grid[j + i * piece_grid_side] = shapes.grid_L[j + i * piece_grid_side];
-                current_piece = L;
-            }
-        }
-        break;
-    case(S):
-        for (int i = 0; i < piece_grid_side; i++)
-        {
-            for (int j = 0; j < piece_grid_side; j++)
-            {
-                current_grid[j + i * piece_grid_side] = shapes.grid_S[j + i * piece_grid_side];
-                reference_grid[j + i * piece_grid_side] = shapes.grid_S[j + i * piece_grid_side];
-                current_piece = S;
-            }
-        }
-        break;
-    case(Z):
-        for (int i = 0; i < piece_grid_side; i++)
-        {
-            for (int j = 0; j < piece_grid_side; j++)
-            {
-                current_grid[j + i * piece_grid_side] = shapes.grid_Z[j + i * piece_grid_side];
-                reference_grid[j + i * piece_grid_side] = shapes.grid_Z[j + i * piece_grid_side];
-                current_piece = Z;
-            }
-        }
-        break;
-    case(O):
-        for (int i = 0; i < piece_grid_side; i++)
-        {
-            for (int j = 0; j < piece_grid_side; j++)
-            {
-                current_grid[j + i * piece_grid_side] = shapes.grid_O[j + i * piece_grid_side];
-                reference_grid[j + i * piece_grid_side] = shapes.grid_O[j + i * piece_grid_side];
-                current_piece = O;
-            }
-        }
-        break;
-    case(T):
-        for (int i = 0; i < piece_grid_side; i++)
-        {
-            for (int j = 0; j < piece_grid_side; j++)
-            {
-                current_grid[j + i * piece_grid_side] = shapes.grid_T[j + i * piece_grid_side];
-                reference_grid[j + i * piece_grid_side] = shapes.grid_T[j + i * piece_grid_side];
-                current_piece = T;
-            }
-        }
-        break;
-
-    }
+        current_piece = new_current_piece;
 }

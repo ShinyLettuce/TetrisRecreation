@@ -38,7 +38,7 @@ struct Tetronimo_controller
                              0,0,0,0, };
 
     void piece_rotation();
-    void change_piece(PIECES new_piece);
+    void change_piece(int new_piece[16], PIECES new_current_piece);
 
     void update();
     void render(Vector2 level_pos);
