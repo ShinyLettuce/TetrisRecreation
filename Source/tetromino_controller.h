@@ -26,6 +26,11 @@ struct Tetronimo_controller
 
     PIECES current_piece = NO_PIECE;
 
+    int reference_grid[16] = {0,0,0,0,
+                              0,0,0,0,
+                              0,0,0,0,
+                              0,0,0,0, };
+
     int current_grid[16] = { 0,0,0,0,
                              0,0,0,0,
                              0,0,0,0,

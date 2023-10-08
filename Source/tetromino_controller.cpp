@@ -39,30 +39,49 @@ void Tetronimo_controller::render()
 void Tetronimo_controller::piece_rotation()
 {
     //Move back to tetromino controller
+    int orientation = 0;
 
-    for (int y = -1; y < 3; y++)
+    if (current_piece == L ||
+        current_piece == J ||
+        current_piece == T)
     {
-        for (int x = -1; x < 3; x++)
+        orientation = rotation_index % 4;
+    }
+    if (current_piece == I ||
+        current_piece == S ||
+        current_piece == Z)
+    {
+        orientation = rotation_index % 2;
+    }
+    if (current_piece == O)
+    {
+        orientation = 3;
+    }
+
+
+    for (int y = 0; y < 4; y++)
+    {
+        for (int x = 0; x < 4; x++)
         {
-            switch (rotation_index % 4)
+            switch (orientation)
             {
             case(0):
                 //90 degrees
-                current_grid[(x + 1) + (y + 1) * 4] = shapes.grid_S[(-y + 1) + (x + 1) * 4];
+                current_grid[(x)+(y) * 4] = reference_grid[(3 - y) + (x * 4)];
+
                 break;
             case(1):
                 //180 degrees
-                current_grid[(x + 1) + (y + 1) * 4] = shapes.grid_S[(-x + 1) + (-y + 1) * 4];
+                current_grid[(x)+(y) * 4] = reference_grid[15 - (x + (y * 4))];
                 break;
             case(2):
                 //270 degrees
-                current_grid[(x + 1) + (y + 1) * 4] = shapes.grid_S[(y + 1) + (-x + 1) * 4];
+                current_grid[(x)+(y) * 4] = reference_grid[(12 + y) - (x) * 4];
                 break;
             case(3):
                 //360 degrees
-                current_grid[(x + 1) + (y + 1) * 4] = shapes.grid_S[(x + 1) + (y + 1) * 4];
+                current_grid[x + (y * 4)] = reference_grid[x + (y * 4)];
                 break;
-
             }
         }
     }
@@ -81,6 +100,8 @@ void Tetronimo_controller::change_piece(PIECES new_piece)
             for (int j = 0; j < piece_grid_side; j++)
             {
                 current_grid[j + i * piece_grid_side] = shapes.grid_I[j + i * piece_grid_side];
+                reference_grid[j + i * piece_grid_side] = shapes.grid_I[j + i * piece_grid_side];
+                current_piece = I;
             }
         }
         break;
@@ -90,6 +111,8 @@ void Tetronimo_controller::change_piece(PIECES new_piece)
             for (int j = 0; j < piece_grid_side; j++)
             {
                 current_grid[j + i * piece_grid_side] = shapes.grid_J[j + i * piece_grid_side];
+                reference_grid[j + i * piece_grid_side] = shapes.grid_J[j + i * piece_grid_side];
+                current_piece = J;
             }
         }
         break;
@@ -99,6 +122,8 @@ void Tetronimo_controller::change_piece(PIECES new_piece)
             for (int j = 0; j < piece_grid_side; j++)
             {
                 current_grid[j + i * piece_grid_side] = shapes.grid_L[j + i * piece_grid_side];
+                reference_grid[j + i * piece_grid_side] = shapes.grid_L[j + i * piece_grid_side];
+                current_piece = L;
             }
         }
         break;
@@ -108,6 +133,8 @@ void Tetronimo_controller::change_piece(PIECES new_piece)
             for (int j = 0; j < piece_grid_side; j++)
             {
                 current_grid[j + i * piece_grid_side] = shapes.grid_S[j + i * piece_grid_side];
+                reference_grid[j + i * piece_grid_side] = shapes.grid_S[j + i * piece_grid_side];
+                current_piece = S;
             }
         }
         break;
@@ -117,6 +144,8 @@ void Tetronimo_controller::change_piece(PIECES new_piece)
             for (int j = 0; j < piece_grid_side; j++)
             {
                 current_grid[j + i * piece_grid_side] = shapes.grid_Z[j + i * piece_grid_side];
+                reference_grid[j + i * piece_grid_side] = shapes.grid_Z[j + i * piece_grid_side];
+                current_piece = Z;
             }
         }
         break;
@@ -126,6 +155,8 @@ void Tetronimo_controller::change_piece(PIECES new_piece)
             for (int j = 0; j < piece_grid_side; j++)
             {
                 current_grid[j + i * piece_grid_side] = shapes.grid_O[j + i * piece_grid_side];
+                reference_grid[j + i * piece_grid_side] = shapes.grid_O[j + i * piece_grid_side];
+                current_piece = O;
             }
         }
         break;
@@ -135,6 +166,8 @@ void Tetronimo_controller::change_piece(PIECES new_piece)
             for (int j = 0; j < piece_grid_side; j++)
             {
                 current_grid[j + i * piece_grid_side] = shapes.grid_T[j + i * piece_grid_side];
+                reference_grid[j + i * piece_grid_side] = shapes.grid_T[j + i * piece_grid_side];
+                current_piece = T;
             }
         }
         break;
