@@ -56,7 +56,7 @@ void Level::piece_movement()
         }
         else
         {
-            //lock
+            piece_lock();
         }
         falling = false;
     }
@@ -64,9 +64,21 @@ void Level::piece_movement()
     gravity_counter++;
 }
 
-void piece_lock()
+void Level::piece_lock()
 {
+    for (int i = 0; i < hello.piece_grid_side; i++)
+    {
+        for (int j = 0; j < hello.piece_grid_side; j++)
+        {
+            if (hello.current_grid[j + i * hello.piece_grid_side] != 0)
+            {
+                grid[((int)hello.pos.x + j + (int)hello.pos.y * grid_width + (i * 12))] = hello.current_grid[j + i * hello.piece_grid_side];
+            }
+        }
+    }
 
+    hello.change_piece(hello.I);
+    hello.pos = { 2,0 };
 }
 
 void Level::update()
