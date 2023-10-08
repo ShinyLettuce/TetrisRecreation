@@ -3,6 +3,7 @@
 void Tetronimo_controller::update()
 {
     input = { 0,0 };
+    rotation_input = 0;
 
     if (IsKeyDown(KEY_LEFT))
     {
@@ -16,10 +17,9 @@ void Tetronimo_controller::update()
     {
         input.y += 1;
     }
-    if (IsKeyDown(KEY_C))
+    if (IsKeyPressed(KEY_C))
     {
-    //    rotate();
-        change_piece(L);
+        rotation_input = 1;
     }
 }
 
@@ -34,6 +34,39 @@ void Tetronimo_controller::render()
         }
     }
 
+}
+
+void Tetronimo_controller::piece_rotation()
+{
+    //Move back to tetromino controller
+
+    for (int y = -1; y < 3; y++)
+    {
+        for (int x = -1; x < 3; x++)
+        {
+            switch (rotation_index % 4)
+            {
+            case(0):
+                //90 degrees
+                current_grid[(x + 1) + (y + 1) * 4] = shapes.grid_S[(-y + 1) + (x + 1) * 4];
+                break;
+            case(1):
+                //180 degrees
+                current_grid[(x + 1) + (y + 1) * 4] = shapes.grid_S[(-x + 1) + (-y + 1) * 4];
+                break;
+            case(2):
+                //270 degrees
+                current_grid[(x + 1) + (y + 1) * 4] = shapes.grid_S[(y + 1) + (-x + 1) * 4];
+                break;
+            case(3):
+                //360 degrees
+                current_grid[(x + 1) + (y + 1) * 4] = shapes.grid_S[(x + 1) + (y + 1) * 4];
+                break;
+
+            }
+        }
+    }
+    rotation_index++;
 }
 
 void Tetronimo_controller::change_piece(PIECES new_piece)
