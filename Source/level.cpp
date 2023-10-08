@@ -64,6 +64,11 @@ void Level::piece_movement()
     gravity_counter++;
 }
 
+void piece_lock()
+{
+
+}
+
 void Level::update()
 {
     hello.update();
