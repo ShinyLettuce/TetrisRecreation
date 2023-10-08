@@ -133,14 +133,38 @@ void Level::render()
     {
         for (int j = 0; j < grid_width; j++)
         {
-            if (grid[j + i * grid_width] == 0)
+            switch (grid[j + i * grid_width])
             {
-                DrawRectangle(j * cell_pixel_side + (int)level_pos.x, i * cell_pixel_side + (int)level_pos.y, cell_pixel_side, cell_pixel_side, WHITE);
+            case(0):
+                cell_color = WHITE;
+                break;
+            case(1):
+                cell_color = GRAY;
+                break;
+            case(2):
+                cell_color = BLUE;
+                break;
+            case(3):
+                cell_color = RED;
+                break;
+            case(4):
+                cell_color = YELLOW;
+                break;
+            case(5):
+                cell_color = GREEN;
+                break;
+            case(6):
+                cell_color = PURPLE;
+                break;
+            case(7):
+                cell_color = DARKBLUE;
+                break;
+            case(8):
+                cell_color = ORANGE;
+                break;
             }
-            if (grid[j + i * grid_width] == 1)
-            {
-                DrawRectangle(j * cell_pixel_side + (int)level_pos.x, i * cell_pixel_side + (int)level_pos.y, cell_pixel_side, cell_pixel_side, GRAY);
-            }
+
+                DrawRectangle(j * cell_pixel_side + (int)level_pos.x, i * cell_pixel_side + (int)level_pos.y, cell_pixel_side, cell_pixel_side, cell_color);
         }
     }
 

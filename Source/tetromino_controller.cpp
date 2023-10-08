@@ -29,8 +29,41 @@ void Tetronimo_controller::render(Vector2 level_pos)
     {
         for (int j = 0; j < 4; j++)
         {
-            if (current_grid[j + i * 4] == 1)
-                DrawRectangle(( (int)pos.x * 50 ) + (j * 50) + (int)level_pos.x, ((int)pos.y * 50) + (i * 50) + (int)level_pos.y, 50, 50, RED);
+
+            switch (current_grid[j + i * 4])
+            {
+            case(0):
+                piece_color = WHITE;
+                break;
+            case(1):
+                piece_color = GRAY;
+                break;
+            case(2):
+                piece_color = BLUE;
+                break;
+            case(3):
+                piece_color = RED;
+                break;
+            case(4):
+                piece_color = YELLOW;
+                break;
+            case(5):
+                piece_color = GREEN;
+                break;
+            case(6):
+                piece_color = PURPLE;
+                break;
+            case(7):
+                piece_color = DARKBLUE;
+                break;
+            case(8):
+                piece_color = ORANGE;
+                break;
+            }
+            if (current_grid[j + i * 4] != 0)
+            {
+                DrawRectangle(( (int)pos.x * 50 ) + (j * 50) + (int)level_pos.x, ((int)pos.y * 50) + (i * 50) + (int)level_pos.y, 50, 50, piece_color);
+            }
         }
     }
 
@@ -38,7 +71,6 @@ void Tetronimo_controller::render(Vector2 level_pos)
 
 void Tetronimo_controller::piece_rotation()
 {
-    //Move back to tetromino controller
     int orientation = 0;
 
     if (current_piece == L ||
@@ -67,8 +99,7 @@ void Tetronimo_controller::piece_rotation()
             {
             case(0):
                 //90 degrees
-                current_grid[(x)+(y) * 4] = reference_grid[(3 - y) + (x * 4)];
-
+                current_grid[(x)+(y) * 4] = reference_grid[(3 - y) + (x * 4)];    
                 break;
             case(1):
                 //180 degrees
@@ -83,6 +114,18 @@ void Tetronimo_controller::piece_rotation()
                 current_grid[x + (y * 4)] = reference_grid[x + (y * 4)];
                 break;
             }
+        }
+    }
+
+    if (current_piece == S)
+    {
+        if (orientation == 0)
+        {
+            pos.y--;
+        }
+        else
+        {
+            pos.y++;
         }
     }
     rotation_index++;

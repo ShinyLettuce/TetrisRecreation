@@ -3,12 +3,13 @@
 #include "tetromino_controller.h"
 
 struct Level {
-    Vector2 level_pos{ 100,-50 };
+    Vector2 level_pos{ 0,-50 };
     Tetronimo_controller hello;
 
     int grid_width = 12;
-    int grid_height = 19;
+    int grid_height = 20;
     int cell_pixel_side = 50;
+    Color cell_color;
 
     int gravity_counter = 0;
     int gravity_time = 60;
@@ -16,7 +17,8 @@ struct Level {
     bool falling = false;
 
 
-    int grid[228] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    int grid[240] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
                       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,

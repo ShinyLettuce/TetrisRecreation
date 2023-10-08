@@ -4,11 +4,12 @@
 
 struct Tetronimo_controller
 {
-    Vector2 pos = { 2,0 };
+    Vector2 pos = { 2,1 };
     Vector2 input = { 0,0 };
     int rotation_input = 0;
     int piece_grid_side = 4;
     int rotation_index = 0;
+    Color piece_color;
 
     Tetromino shapes;
 
