@@ -135,14 +135,14 @@ void Level::render()
         {
             if (grid[j + i * grid_width] == 0)
             {
-                DrawRectangle(j * cell_pixel_side, i * cell_pixel_side, cell_pixel_side, cell_pixel_side, WHITE);
+                DrawRectangle(j * cell_pixel_side + (int)level_pos.x, i * cell_pixel_side + (int)level_pos.y, cell_pixel_side, cell_pixel_side, WHITE);
             }
             if (grid[j + i * grid_width] == 1)
             {
-                DrawRectangle(j * cell_pixel_side, i * cell_pixel_side, cell_pixel_side, cell_pixel_side, GRAY);
+                DrawRectangle(j * cell_pixel_side + (int)level_pos.x, i * cell_pixel_side + (int)level_pos.y, cell_pixel_side, cell_pixel_side, GRAY);
             }
         }
     }
 
-    hello.render();
+    hello.render(level_pos);
 }

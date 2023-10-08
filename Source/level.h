@@ -3,6 +3,7 @@
 #include "tetromino_controller.h"
 
 struct Level {
+    Vector2 level_pos{ 100,-50 };
     Tetronimo_controller hello;
 
     int grid_width = 12;

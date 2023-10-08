@@ -40,5 +40,5 @@ struct Tetronimo_controller
     void change_piece(PIECES new_piece);
 
     void update();
-    void render();
+    void render(Vector2 level_pos);
 };

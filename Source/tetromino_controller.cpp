@@ -23,14 +23,14 @@ void Tetronimo_controller::update()
     }
 }
 
-void Tetronimo_controller::render()
+void Tetronimo_controller::render(Vector2 level_pos)
 {
     for (int i = 0; i < 4; i++)
     {
         for (int j = 0; j < 4; j++)
         {
             if (current_grid[j + i * 4] == 1)
-                DrawRectangle(((int)pos.x * 50) + (j * 50), ((int)pos.y * 50) + (i * 50), 50, 50, RED);
+                DrawRectangle(( (int)pos.x * 50 ) + (j * 50) + (int)level_pos.x, ((int)pos.y * 50) + (i * 50) + (int)level_pos.y, 50, 50, RED);
         }
     }
 
