@@ -64,6 +64,11 @@ void Level::piece_movement()
     gravity_counter++;
 }
 
+void Level::piece_rotation()
+{
+
+}
+
 void Level::piece_lock()
 {
     for (int i = 0; i < hello.piece_grid_side; i++)

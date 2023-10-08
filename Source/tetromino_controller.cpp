@@ -108,30 +108,3 @@ void Tetronimo_controller::change_piece(PIECES new_piece)
 
     }
 }
-
-void Tetronimo_controller::rotate()
-{
-
-    //for (int y = -1; y < 3; y++)
-    //{
-    //    for (int x = -1; x < 3; x++)
-    //    {
-    //        switch (rotation_index)
-    //        {
-    //        case(1):
-    //            //90 degrees
-    //            current_grid[(x + 1) + (y + 1) * 4] = piece_grid[(-y + 1) + (x + 1) * 4];
-    //            break;
-    //        case(2):
-    //            //180 degrees
-    //            current_grid[(x + 1) + (y + 1) * 4] = piece_grid[(-x + 1) + (-y + 1) * 4];
-    //            break;
-    //        case(3):
-    //            //270 degrees
-    //            current_grid[(x + 1) + (y + 1) * 4] = piece_grid[(y + 1) + (-x + 1) * 4];
-    //            break;
-    //
-    //        }
-    //    }
-    //}
-}

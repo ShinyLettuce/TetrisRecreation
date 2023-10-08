@@ -30,8 +30,6 @@ struct Tetronimo_controller
                              0,0,0,0,
                              0,0,0,0, };
 
-    void rotate();
-
     void change_piece(PIECES new_piece);
 
     void update();
