@@ -2,9 +2,9 @@
 #include "raylib.h"
 #include "tetromino.h"
 
-struct Tetronimo_controller
+struct Tetromino_controller
 {
-    Vector2 pos = { 2,1 };
+    Vector2 pos = { 4,1 };
     Vector2 input = { 0,0 };
     int rotation_input = 0;
     int piece_grid_side = 4;

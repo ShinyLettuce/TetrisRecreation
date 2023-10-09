@@ -84,7 +84,7 @@ void Level::piece_lock()
 
     player.change_piece(player.next_grid, player.next_piece); // to next piece
     player.random_piece();
-    player.pos = { 2,0 };
+    player.pos = { 4,1 };
 }
 
 void Level::update()

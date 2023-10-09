@@ -1,7 +1,7 @@
 #include "tetromino_controller.h"
 
 
-void Tetronimo_controller::piece_rotation()
+void Tetromino_controller::piece_rotation()
 {
     int orientation = 0;
 
@@ -49,7 +49,21 @@ void Tetronimo_controller::piece_rotation()
         }
     }
 
+    //piece correction
     if (current_piece == S)
+    {
+        if (orientation == 0)
+        {
+            pos.y--;
+            pos.x++;
+        }
+        else
+        {
+            pos.y++;
+            pos.x--;
+        }
+    }
+    if (current_piece == Z)
     {
         if (orientation == 0)
         {
@@ -63,7 +77,7 @@ void Tetronimo_controller::piece_rotation()
     rotation_index++;
 }
 
-void Tetronimo_controller::change_piece(int new_piece[16], PIECES new_current_piece)
+void Tetromino_controller::change_piece(int new_piece[16], PIECES new_current_piece)
 {
         for (int i = 0; i < piece_grid_side; i++)
         {
@@ -77,7 +91,7 @@ void Tetronimo_controller::change_piece(int new_piece[16], PIECES new_current_pi
         current_piece = new_current_piece;
 }
 
-void Tetronimo_controller::random_piece()
+void Tetromino_controller::random_piece()
 {
     int* temp = NULL; // change name or something
 
@@ -126,7 +140,7 @@ void Tetronimo_controller::random_piece()
 
 }
 
-void Tetronimo_controller::update()
+void Tetromino_controller::update()
 {
     input = { 0,0 };
     rotation_input = 0;
@@ -149,7 +163,7 @@ void Tetronimo_controller::update()
     }
 }
 
-void Tetronimo_controller::render(Vector2 level_pos)
+void Tetromino_controller::render(Vector2 level_pos)
 {
     for (int i = 0; i < 4; i++)
     {
