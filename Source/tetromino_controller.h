@@ -26,6 +26,12 @@ struct Tetronimo_controller
     };
 
     PIECES current_piece = NO_PIECE;
+    PIECES next_piece = NO_PIECE;
+
+    int next_grid[16] = { 0,0,0,0,
+                          0,0,0,0,
+                          0,0,0,0,
+                          0,0,0,0, };
 
     int reference_grid[16] = {0,0,0,0,
                               0,0,0,0,
@@ -39,6 +45,8 @@ struct Tetronimo_controller
 
     void piece_rotation();
     void change_piece(int new_piece[16], PIECES new_current_piece);
+
+    void random_piece();
 
     void update();
     void render(Vector2 level_pos);

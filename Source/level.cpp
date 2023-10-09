@@ -2,7 +2,10 @@
 
 void Level::init()
 {
-    hello.change_piece(hello.shapes.grid_S, hello.S);
+    hello.random_piece();
+    hello.change_piece(hello.next_grid, hello.next_piece);
+    hello.random_piece();
+
 }
 
 bool Level::piece_collision(int future_pos_x, int pos_y)
@@ -79,7 +82,8 @@ void Level::piece_lock()
         }
     }
 
-    hello.change_piece(hello.shapes.grid_I, hello.I); // to next piece
+    hello.change_piece(hello.next_grid, hello.next_piece); // to next piece
+    hello.random_piece();
     hello.pos = { 2,0 };
 }
 
