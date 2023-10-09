@@ -2,9 +2,9 @@
 
 void Level::init()
 {
-    hello.random_piece();
-    hello.change_piece(hello.next_grid, hello.next_piece);
-    hello.random_piece();
+    player.random_piece();
+    player.change_piece(player.next_grid, player.next_piece);
+    player.random_piece();
 
 }
 
@@ -15,11 +15,11 @@ bool Level::piece_collision(int future_pos_x, int pos_y)
         pos_y++;
     }
 
-    for (int i = 0; i < hello.piece_grid_side; i++)
+    for (int i = 0; i < player.piece_grid_side; i++)
     {
-        for (int j = 0; j < hello.piece_grid_side; j++)
+        for (int j = 0; j < player.piece_grid_side; j++)
         {
-            if (hello.current_grid[j + i * hello.piece_grid_side] != 0 &&
+            if (player.current_grid[j + i * player.piece_grid_side] != 0 &&
                 grid[(future_pos_x + j + pos_y * grid_width + (i * 12))] != 0)
             {
 
@@ -32,31 +32,31 @@ bool Level::piece_collision(int future_pos_x, int pos_y)
 
 void Level::piece_movement()
 {
-    if (hello.rotation_input != 0)
+    if (player.rotation_input != 0)
     {
-        hello.piece_rotation();
+        player.piece_rotation();
     }
 
-    if (hello.input.y == 1)
+    if (player.input.y == 1)
     {
         gravity_time = 3;
     }
-    else if (hello.input.y == 0)
+    else if (player.input.y == 0)
     {
         gravity_time = 60;
     }
 
-    if (!piece_collision((int)(hello.pos.x + hello.input.x), (int)(hello.pos.y)))
+    if (!piece_collision((int)(player.pos.x + player.input.x), (int)(player.pos.y)))
     {
-        hello.pos.x += hello.input.x;
+        player.pos.x += player.input.x;
     }
 
     if (gravity_counter >= gravity_time)
     {
         falling = true;
-        if (!piece_collision((int)hello.pos.x, (int)hello.pos.y))
+        if (!piece_collision((int)player.pos.x, (int)player.pos.y))
         {
-            hello.pos.y++;
+            player.pos.y++;
             gravity_counter = 0;
         }
         else
@@ -71,25 +71,25 @@ void Level::piece_movement()
 
 void Level::piece_lock()
 {
-    for (int i = 0; i < hello.piece_grid_side; i++)
+    for (int i = 0; i < player.piece_grid_side; i++)
     {
-        for (int j = 0; j < hello.piece_grid_side; j++)
+        for (int j = 0; j < player.piece_grid_side; j++)
         {
-            if (hello.current_grid[j + i * hello.piece_grid_side] != 0)
+            if (player.current_grid[j + i * player.piece_grid_side] != 0)
             {
-                grid[((int)hello.pos.x + j + (int)hello.pos.y * grid_width + (i * 12))] = hello.current_grid[j + i * hello.piece_grid_side];
+                grid[((int)player.pos.x + j + (int)player.pos.y * grid_width + (i * 12))] = player.current_grid[j + i * player.piece_grid_side];
             }
         }
     }
 
-    hello.change_piece(hello.next_grid, hello.next_piece); // to next piece
-    hello.random_piece();
-    hello.pos = { 2,0 };
+    player.change_piece(player.next_grid, player.next_piece); // to next piece
+    player.random_piece();
+    player.pos = { 2,0 };
 }
 
 void Level::update()
 {
-    hello.update();
+    player.update();
     piece_movement();
 }
 
@@ -129,12 +129,12 @@ void Level::render()
     {
         for (int j = 0; j < 4; j++)
         {
-            if (hello.next_grid[j + i * 4] != 0)
+            if (player.next_grid[j + i * 4] != 0)
             {
                 DrawRectangle(j * cell_pixel_side + 610, i * cell_pixel_side + 600, cell_pixel_side, cell_pixel_side, WHITE);
             }
         }
     }
 
-    hello.render(level_pos);
+    player.render(level_pos);
 }

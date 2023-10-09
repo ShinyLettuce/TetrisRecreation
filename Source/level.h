@@ -4,7 +4,7 @@
 
 struct Level {
     Vector2 level_pos{ 0,-50 };
-    Tetronimo_controller hello;
+    Tetronimo_controller player;
 
     int grid_width = 12;
     int grid_height = 20;
