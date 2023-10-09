@@ -79,7 +79,7 @@ void Tetronimo_controller::change_piece(int new_piece[16], PIECES new_current_pi
 
 void Tetronimo_controller::random_piece()
 {
-    int* temp = NULL;
+    int* temp = NULL; // change name or something
 
     switch (GetRandomValue(1, 7))
     {
@@ -113,11 +113,14 @@ void Tetronimo_controller::random_piece()
         break;
     }
 
-    for (int i = 0; i < piece_grid_side; i++)
+    if (temp != NULL)
     {
-        for (int j = 0; j < piece_grid_side; j++)
+        for (int i = 0; i < piece_grid_side; i++)
         {
-            next_grid[j + i * piece_grid_side] = temp[j + i * piece_grid_side];
+            for (int j = 0; j < piece_grid_side; j++)
+            {
+                next_grid[j + i * piece_grid_side] = temp[j + i * piece_grid_side];
+            }
         }
     }
 

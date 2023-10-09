@@ -125,5 +125,16 @@ void Level::render()
         }
     }
 
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            if (hello.next_grid[j + i * 4] != 0)
+            {
+                DrawRectangle(j * cell_pixel_side + 610, i * cell_pixel_side + 600, cell_pixel_side, cell_pixel_side, WHITE);
+            }
+        }
+    }
+
     hello.render(level_pos);
 }
