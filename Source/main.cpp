@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include <iostream>
 #include "level.h"
+#include "file.h"
 
 
 int main(void)
@@ -21,6 +22,8 @@ int main(void)
 
     auto sound = LoadSound("./hitHurt.ogg");
     level.init();
+    File_Manager file;
+    file.write();
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key

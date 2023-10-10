@@ -162,11 +162,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\file.cpp" />
     <ClCompile Include="Source\level.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\tetromino_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\file.h" />
     <ClInclude Include="Source\level.h" />
     <ClInclude Include="Source\tetromino.h" />
     <ClInclude Include="Source\tetromino_controller.h" />
