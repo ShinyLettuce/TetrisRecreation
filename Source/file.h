@@ -1,6 +1,7 @@
 #pragma once
 #include <fstream>
 #include <filesystem>
+#include <string>
 
 struct File_Manager {
     const char* level_file = "../Assets/Text/Levels.txt"; //ENI note: ../ => goes to the previous folder
@@ -9,5 +10,5 @@ struct File_Manager {
 
     void load();
 
-    void write();
+    void write(std::string text);
 };

@@ -23,7 +23,7 @@ int main(void)
     auto sound = LoadSound("./hitHurt.ogg");
     level.init();
     File_Manager file;
-    file.write();
+    file.write("Anteeksi, olen Ganondorf");
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
