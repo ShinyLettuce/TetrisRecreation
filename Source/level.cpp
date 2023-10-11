@@ -46,9 +46,23 @@ void Level::piece_movement()
         gravity_time = 60;
     }
 
-    if (!piece_collision((int)(player.pos.x + player.input.x), (int)(player.pos.y)))
+    if (!piece_collision((int)(player.pos.x + player.input.x), (int)(player.pos.y)) &&
+        player.input.x != 0)
     {
-        player.pos.x += player.input.x;
+        if (x_movement_timer == 0)
+        {
+            player.pos.x += player.input.x;
+        }
+        else if (x_movement_timer >= player.x_movement_speed)
+        {
+            player.pos.x += player.input.x;
+            x_movement_timer = 20;
+        }
+        x_movement_timer++;
+    }
+    else
+    {
+        x_movement_timer = 0;
     }
 
     if (gravity_counter >= gravity_time)
@@ -82,7 +96,7 @@ void Level::piece_lock()
         }
     }
 
-    player.change_piece(player.next_grid, player.next_piece); // to next piece
+    player.change_piece(player.next_grid, player.next_piece);
     player.random_piece();
     player.pos = { 4,1 };
     player.rotation_index = 0;

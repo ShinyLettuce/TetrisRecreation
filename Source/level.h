@@ -11,6 +11,7 @@ struct Level {
     int cell_pixel_side = 50;
     Color cell_color;
 
+    int x_movement_timer = 0;
     int gravity_counter = 0;
     int gravity_time = 60;
 

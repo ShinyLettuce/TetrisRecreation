@@ -7,6 +7,7 @@ struct Tetromino_controller
     Vector2 pos = { 4,1 };
     Vector2 input = { 0,0 };
     int rotation_input = 0;
+    int x_movement_speed = 30;
     int piece_grid_side = 4;
     int rotation_index = 0;
     Color piece_color;

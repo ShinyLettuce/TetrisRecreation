@@ -142,7 +142,7 @@ void Tetromino_controller::random_piece()
 
 void Tetromino_controller::update()
 {
-    input = { 0,0 };
+    input = { 0,0 };            //After lockdown, force player to click down again
     rotation_input = 0;
 
     if (IsKeyDown(KEY_LEFT))
