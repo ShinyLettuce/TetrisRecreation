@@ -30,20 +30,20 @@ void Tetromino_controller::piece_rotation()
             switch (orientation)
             {
             case(0):
+                //360 degrees
+                current_grid[x + (y * 4)] = reference_grid[x + (y * 4)];
+                break;
+            case(1):
                 //90 degrees
                 current_grid[(x)+(y) * 4] = reference_grid[(3 - y) + (x * 4)];    
                 break;
-            case(1):
+            case(2):
                 //180 degrees
                 current_grid[(x)+(y) * 4] = reference_grid[15 - (x + (y * 4))];
                 break;
-            case(2):
+            case(3):
                 //270 degrees
                 current_grid[(x)+(y) * 4] = reference_grid[(12 + y) - (x) * 4];
-                break;
-            case(3):
-                //360 degrees
-                current_grid[x + (y * 4)] = reference_grid[x + (y * 4)];
                 break;
             }
         }
@@ -54,26 +54,44 @@ void Tetromino_controller::piece_rotation()
     {
         if (orientation == 0)
         {
-            pos.y--;
-            pos.x++;
+            pos.y++;
         }
         else
         {
-            pos.y++;
-            pos.x--;
+            pos.y--;
         }
     }
     if (current_piece == Z)
     {
         if (orientation == 0)
         {
-            pos.y--;
+            pos.x++;
         }
         else
+        {
+            pos.x--;
+        }
+    }
+    if (current_piece == L || current_piece == J || current_piece == T)
+    {
+        if (orientation == 0)
+        {
+            pos.x++;
+        }
+        else if(orientation == 1)
+        {
+            pos.y--;
+        }
+        else if (orientation == 2)
+        {
+            pos.x--;
+        }
+        else if (orientation == 3)
         {
             pos.y++;
         }
     }
+
     rotation_index++;
 }
 
