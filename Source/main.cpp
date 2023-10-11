@@ -12,7 +12,7 @@ int main(void)
     const int screenHeight = 900;
     Level level;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, "Tetris");
 
     SetTargetFPS(60);              
 
