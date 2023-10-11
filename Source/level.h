@@ -10,6 +10,7 @@ struct Level {
     int grid_height = 20;
     int cell_pixel_side = 50;
     Color cell_color;
+    int line_scan_count = 0;
 
     int x_movement_timer = 0;
     int gravity_counter = 0;
@@ -43,6 +44,8 @@ struct Level {
     bool piece_collision(int future_pos_x, int pos_y); // probably change the passed variable names
     void piece_movement();
     void piece_lock();
+    void line_scan();
+    void remove_line(int line);
 
     void update();
     void render();

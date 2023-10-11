@@ -22,7 +22,6 @@ bool Level::piece_collision(int future_pos_x, int pos_y)
             if (player.current_grid[j + i * player.piece_grid_side] != 0 &&
                 grid[(future_pos_x + j + pos_y * grid_width + (i * 12))] != 0)
             {
-
                 return true;
             }
         }
@@ -96,10 +95,49 @@ void Level::piece_lock()
         }
     }
 
+    line_scan();
+
     player.change_piece(player.next_grid, player.next_piece);
     player.random_piece();
     player.pos = { 4,1 };
     player.rotation_index = 1;
+    gravity_counter = 0;
+}
+
+void Level::line_scan()
+{
+    for (int i = 0; i < grid_height; i++)
+    {
+        for (int j = 0; j < grid_width; j++)
+        {
+            if (grid[j + i * grid_width] != 0 && grid[j + i * grid_width] != 1)
+            {
+                line_scan_count++;
+            }
+            if (line_scan_count == 10)
+            {
+                remove_line(i);
+                line_scan_count = 0;
+            }
+        }
+        line_scan_count = 0;
+    }
+}
+
+void Level::remove_line(int line)
+{
+    for (int i = 1; i < grid_width - 1; i++)
+    {
+        grid[i + line * grid_width] = 0;
+    }
+
+    for (int i = line; i > 0; i--)
+    {
+        for (int j = 1; j < grid_width -1; j++)
+        {
+            grid[j + i * grid_width] = grid[j + (i - 1) * grid_width];
+        }
+    }
 }
 
 void Level::update()
