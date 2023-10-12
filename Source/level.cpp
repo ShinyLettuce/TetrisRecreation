@@ -188,7 +188,7 @@ void Level::render()
             {
             case(0):    cell_color = WHITE;
                 break;
-            case(1):    cell_color = GRAY;
+            case(1):    cell_color = DARKGRAY;
                 break;
             case(2):    cell_color = BLUE;
                 break;
