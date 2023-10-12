@@ -105,12 +105,10 @@ void Tetromino_controller::piece_rotation()
         }
         else if (orientation == 2)
         {
-            //pos.x++;
             pos.y--;
         }
         else if (orientation == 3)
         {
-            //pos.y--;
             pos.x--;
         }
     }
