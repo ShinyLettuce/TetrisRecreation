@@ -47,7 +47,7 @@ void Level::piece_movement()
     }
     else if (player.input.y == 0)
     {
-        gravity_time = 60;
+        gravity_time = gravity;
     }
 
     if (!piece_collision((int)(player.pos.x + player.input.x), (int)(player.pos.y)) &&
@@ -60,7 +60,7 @@ void Level::piece_movement()
         else if (x_movement_timer >= player.x_movement_speed)
         {
             player.pos.x += player.input.x;
-            x_movement_timer = 20;
+            x_movement_timer = 14;
         }
         x_movement_timer++;
     }
@@ -122,10 +122,16 @@ void Level::line_scan()
             if (line_scan_count == 10)
             {
                 remove_line(i);
+                lines_cleared_in_a_frame++;
                 line_scan_count = 0;
             }
         }
         line_scan_count = 0;
+    }
+    if (lines_cleared_in_a_frame > 0)
+    {
+        add_score(lines_cleared_in_a_frame);
+        lines_cleared_in_a_frame = 0;
     }
 }
 
@@ -142,6 +148,27 @@ void Level::remove_line(int line)
         {
             grid[j + i * grid_width] = grid[j + (i - 1) * grid_width];
         }
+    }
+}
+
+void Level::add_score(int number_of_lines_cleared)
+{
+    switch (number_of_lines_cleared)
+    {
+    case(1):
+        score += 40;
+        break;
+    case(2):
+        score += 100;
+        break;
+    case(3):
+        score += 300;
+        break;
+    case(4):
+        score += 1200;
+        break;
+    default:
+        break;
     }
 }
 
@@ -193,6 +220,11 @@ void Level::render()
             }
         }
     }
+
+    DrawText("SCORE", 640, 60, 38, WHITE);
+    DrawText(TextFormat("%05i", score), 655, 100, 38, WHITE);
+    DrawText("LEVEL", 640, 300, 38, WHITE);
+    DrawText("LINES", 640, 400, 38, WHITE);
 
     player.render(level_pos);
 }

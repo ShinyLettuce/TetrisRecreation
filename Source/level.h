@@ -9,14 +9,17 @@ struct Level {
     int grid_width = 12;
     int grid_height = 20;
     int cell_pixel_side = 50;
-    Color cell_color;
     int line_scan_count = 0;
+    Color cell_color;
 
     int x_movement_timer = 0;
+    int gravity = 53;
+    int gravity_time = gravity;
     int gravity_counter = 0;
-    int gravity_time = 60;
-
     bool falling = false;
+
+    int score = 0;
+    int lines_cleared_in_a_frame = 0;
 
 
     int grid[240] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -46,6 +49,7 @@ struct Level {
     void piece_lock();
     void line_scan();
     void remove_line(int line);
+    void add_score(int number_of_lines_cleared);
 
     void update();
     void render();
