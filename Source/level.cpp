@@ -34,6 +34,11 @@ void Level::piece_movement()
     if (player.rotation_input != 0)
     {
         player.piece_rotation();
+        if (piece_collision((int)(player.pos.x + player.input.x), (int)(player.pos.y)))
+        {
+            player.rotation_input = -player.rotation_input;
+            player.piece_rotation();
+        }
     }
 
     if (player.input.y == 1)
