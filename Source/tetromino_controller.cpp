@@ -5,23 +5,24 @@ void Tetromino_controller::piece_rotation()
 {
     int orientation = 0;
 
+    rotation_index += (1 * rotation_input);
+
     if (current_piece == L ||
         current_piece == J ||
         current_piece == T)
     {
-        orientation = rotation_index % 4;
+        orientation = wrap_index(rotation_index, 4);
     }
     if (current_piece == I ||
         current_piece == S ||
         current_piece == Z)
     {
-        orientation = rotation_index % 2;
+        orientation = wrap_index(rotation_index, 2);
     }
     if (current_piece == O)
     {
         orientation = 3;
     }
-
 
     for (int y = 0; y < 4; y++)
     {
@@ -72,7 +73,8 @@ void Tetromino_controller::piece_rotation()
             pos.x--;
         }
     }
-    if (current_piece == L || current_piece == J || current_piece == T)
+    
+    if ((current_piece == L || current_piece == J || current_piece == T) && rotation_input == 1)
     {
         if (orientation == 0)
         {
@@ -91,8 +93,27 @@ void Tetromino_controller::piece_rotation()
             pos.y++;
         }
     }
-
-    rotation_index++;
+    if ((current_piece == L || current_piece == J || current_piece == T) && rotation_input == -1)
+    {
+        if (orientation == 0)
+        {
+            pos.y++;
+        }
+        else if (orientation == 1)
+        {
+            pos.x++;
+        }
+        else if (orientation == 2)
+        {
+            //pos.x++;
+            pos.y--;
+        }
+        else if (orientation == 3)
+        {
+            //pos.y--;
+            pos.x--;
+        }
+    }
 }
 
 void Tetromino_controller::change_piece(int new_piece[16], PIECES new_current_piece)
@@ -178,6 +199,10 @@ void Tetromino_controller::update()
     if (IsKeyPressed(KEY_C))
     {
         rotation_input = 1;
+    }
+    if (IsKeyPressed(KEY_X))
+    {
+        rotation_input = -1;
     }
 }
 

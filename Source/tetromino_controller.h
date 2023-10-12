@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "tetromino.h"
+#include "math_util.h"
 
 struct Tetromino_controller
 {
@@ -9,7 +10,7 @@ struct Tetromino_controller
     int rotation_input = 0;
     int x_movement_speed = 30;
     int piece_grid_side = 4;
-    int rotation_index = 1;
+    int rotation_index = 0;
     Color piece_color;
 
     Tetromino shapes;
