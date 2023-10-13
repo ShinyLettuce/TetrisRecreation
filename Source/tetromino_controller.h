@@ -15,7 +15,7 @@ struct Tetromino_controller
 
     Tetromino shapes;
 
-    enum PIECES
+    enum class PIECES
     {
         NO_PIECE, //not to happen during game
         L,
@@ -27,8 +27,8 @@ struct Tetromino_controller
         O
     };
 
-    PIECES current_piece = NO_PIECE;
-    PIECES next_piece = NO_PIECE;
+    PIECES current_piece = PIECES::NO_PIECE;
+    PIECES next_piece = PIECES::NO_PIECE;
 
     int next_grid[16] = { 0,0,0,0,
                           0,0,0,0,

@@ -7,19 +7,19 @@ void Tetromino_controller::piece_rotation()
 
     rotation_index += (1 * rotation_input);
 
-    if (current_piece == L ||
-        current_piece == J ||
-        current_piece == T)
+    if (current_piece == PIECES::L ||
+        current_piece == PIECES::J ||
+        current_piece == PIECES::T)
     {
         orientation = wrap_index(rotation_index, 4);
     }
-    if (current_piece == I ||
-        current_piece == S ||
-        current_piece == Z)
+    if (current_piece == PIECES::I ||
+        current_piece == PIECES::S ||
+        current_piece == PIECES::Z)
     {
         orientation = wrap_index(rotation_index, 2);
     }
-    if (current_piece == O)
+    if (current_piece == PIECES::O)
     {
         orientation = 3;
     }
@@ -51,7 +51,7 @@ void Tetromino_controller::piece_rotation()
     }
 
     //piece correction
-    if (current_piece == S)
+    if (current_piece == PIECES::S)
     {
         if (orientation == 0)
         {
@@ -62,7 +62,7 @@ void Tetromino_controller::piece_rotation()
             pos.y--;
         }
     }
-    if (current_piece == Z)
+    if (current_piece == PIECES::Z)
     {
         if (orientation == 0)
         {
@@ -74,7 +74,7 @@ void Tetromino_controller::piece_rotation()
         }
     }
     
-    if ((current_piece == L || current_piece == J || current_piece == T) && rotation_input == 1)
+    if ((current_piece == PIECES::L || current_piece == PIECES::J || current_piece == PIECES::T) && rotation_input == 1)
     {
         if (orientation == 0)
         {
@@ -93,7 +93,7 @@ void Tetromino_controller::piece_rotation()
             pos.y++;
         }
     }
-    if ((current_piece == L || current_piece == J || current_piece == T) && rotation_input == -1)
+    if ((current_piece == PIECES::L || current_piece == PIECES::J || current_piece == PIECES::T) && rotation_input == -1)
     {
         if (orientation == 0)
         {
@@ -135,31 +135,31 @@ void Tetromino_controller::random_piece()
     switch (GetRandomValue(1, 7))
     {
     case(1):    
-        next_piece = S;
+        next_piece = PIECES::S;
         temp = shapes.grid_S;
         break;
     case(2):    
-        next_piece = I;
+        next_piece = PIECES::I;
         temp = shapes.grid_I;
         break;
     case(3):    
-        next_piece = Z;
+        next_piece = PIECES::Z;
         temp = shapes.grid_Z;
         break;
     case(4):    
-        next_piece = J;
+        next_piece = PIECES::J;
         temp = shapes.grid_J;
         break;
     case(5):    
-        next_piece = O;
+        next_piece = PIECES::O;
         temp = shapes.grid_O;
         break;
     case(6):    
-        next_piece = T;
+        next_piece = PIECES::T;
         temp = shapes.grid_T;
         break;
     case(7):    
-        next_piece = L;
+        next_piece = PIECES::L;
         temp = shapes.grid_L;
         break;
     }
