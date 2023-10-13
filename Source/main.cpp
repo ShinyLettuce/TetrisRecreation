@@ -1,6 +1,7 @@
 #include "raylib.h"
 //#include <iostream>
-#include "level.h"
+//#include "level.h"
+#include "game_state.h"
 #include "file.h"
 
 
@@ -10,7 +11,6 @@ int main(void)
     //--------------------------------------------------------------------------------------
     const int screenWidth = 810;
     const int screenHeight = 900;
-    Level level;
 
     InitWindow(screenWidth, screenHeight, "Tetris");
 
@@ -19,29 +19,20 @@ int main(void)
     //--------------------------------------------------------------------------------------
 
     InitAudioDevice();
-
     auto sound = LoadSound("./hitHurt.ogg");
-    level.init();
+
+    Game_State game;
+    game.game_state.push(Game_State::GAME_STATE::MAIN_MENU);
     File_Manager file;
     file.write("Anteeksi, olen Ganondorf");
 
-    // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        // Update
-        //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
-        //----------------------------------------------------------------------------------
 
-        level.update();
-
-        // Draw
-        //----------------------------------------------------------------------------------
         BeginDrawing();
+        ClearBackground(BLACK); // move somewhere else
 
-        ClearBackground(BLACK);
-
-        level.render();
+        game.update();
 
         EndDrawing();
         //----------------------------------------------------------------------------------

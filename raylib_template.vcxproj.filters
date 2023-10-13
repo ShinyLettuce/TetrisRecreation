@@ -30,6 +30,9 @@
     <ClCompile Include="Source\math_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\game_state.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\level.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\math_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\game_state.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
