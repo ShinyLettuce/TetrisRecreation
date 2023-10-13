@@ -75,7 +75,6 @@ void Tetromino_controller::piece_rotation()
             pos.x--;
         }
     }
-    
     if ((current_piece == PIECES::L || current_piece == PIECES::J || current_piece == PIECES::T) && rotation_input == 1)
     {
         if (orientation == 0)

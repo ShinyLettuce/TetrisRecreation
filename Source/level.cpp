@@ -5,7 +5,6 @@ void Level::init()
     player.random_piece();
     player.change_piece(player.next_grid, player.next_piece);
     player.random_piece();
-
 }
 
 bool Level::piece_collision(int future_pos_x, int pos_y)
