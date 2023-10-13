@@ -34,7 +34,7 @@ void Level::piece_movement()
     if (player.rotation_input != 0)
     {
         player.piece_rotation();
-        if (piece_collision((int)(player.pos.x), (int)(player.pos.y)))
+        if (piece_collision(static_cast<int>(player.pos.x), static_cast<int>(player.pos.y)))
         {
             player.rotation_input = -player.rotation_input;
             player.piece_rotation();
@@ -50,7 +50,7 @@ void Level::piece_movement()
         gravity_time = gravity;
     }
 
-    if (!piece_collision((int)(player.pos.x + player.input.x), (int)(player.pos.y)) &&
+    if (!piece_collision(static_cast<int>(player.pos.x + player.input.x), static_cast<int>(player.pos.y)) &&
         player.input.x != 0)
     {
         if (x_movement_timer == 0)
@@ -72,7 +72,7 @@ void Level::piece_movement()
     if (gravity_counter >= gravity_time)
     {
         falling = true;
-        if (!piece_collision((int)player.pos.x, (int)player.pos.y))
+        if (!piece_collision(static_cast<int>(player.pos.x), static_cast<int>(player.pos.y)))
         {
             player.pos.y++;
             gravity_counter = 0;
@@ -95,7 +95,7 @@ void Level::piece_lock()
         {
             if (player.current_grid[j + i * player.piece_grid_side] != 0)
             {
-                grid[((int)player.pos.x + j + (int)player.pos.y * grid_width + (i * 12))] = player.current_grid[j + i * player.piece_grid_side];
+                grid[(static_cast<int>(player.pos.x) + j + static_cast<int>(player.pos.y) * grid_width + (i * 12))] = player.current_grid[j + i * player.piece_grid_side];
             }
         }
     }
@@ -204,9 +204,11 @@ void Level::render()
                 break;
             case(8):    cell_color = ORANGE;
                 break;
+            default:
+                break;
             }
 
-                DrawRectangle(j * cell_pixel_side + (int)level_pos.x, i * cell_pixel_side + (int)level_pos.y, cell_pixel_side, cell_pixel_side, cell_color);
+                DrawRectangle(j * cell_pixel_side + static_cast<int>(level_pos.x), i * cell_pixel_side + static_cast<int>(level_pos.y), cell_pixel_side, cell_pixel_side, cell_color);
         }
     }
 

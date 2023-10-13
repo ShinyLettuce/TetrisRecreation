@@ -46,6 +46,8 @@ void Tetromino_controller::piece_rotation()
                 //270 degrees
                 current_grid[(x)+(y) * 4] = reference_grid[(12 + y) - (x) * 4];
                 break;
+            default:
+                break;
             }
         }
     }
@@ -130,7 +132,7 @@ void Tetromino_controller::change_piece(int new_piece[16], PIECES new_current_pi
 
 void Tetromino_controller::random_piece()
 {
-    int* temp = NULL; // change name or something
+    int* temp = nullptr; // change name or something
 
     switch (GetRandomValue(1, 7))
     {
@@ -162,9 +164,11 @@ void Tetromino_controller::random_piece()
         next_piece = PIECES::L;
         temp = shapes.grid_L;
         break;
+    default:
+        break;
     }
 
-    if (temp != NULL)
+    if (temp != nullptr)
     {
         for (int i = 0; i < piece_grid_side; i++)
         {
@@ -230,10 +234,12 @@ void Tetromino_controller::render(Vector2 level_pos)
                 break;
             case(8):    piece_color = ORANGE;
                 break;
+            default:
+                break;
             }
             if (current_grid[j + i * 4] != 0)
             {
-                DrawRectangle(( (int)pos.x * 50 ) + (j * 50) + (int)level_pos.x, ((int)pos.y * 50) + (i * 50) + (int)level_pos.y, 50, 50, piece_color);
+                DrawRectangle(( static_cast<int>(pos.x) * 50 ) + (j * 50) + static_cast<int>(level_pos.x), (static_cast<int>(pos.y) * 50) + (i * 50) + static_cast<int>(level_pos.y), 50, 50, piece_color);
             }
         }
     }
