@@ -239,6 +239,9 @@ void Level::render()
         }
     }
 
+    DrawRectangle(600, 45, 190, 100, dark_transparent);
+    DrawRectangle(600, 285, 190, 220, dark_transparent);
+
     DrawText("SCORE", 640, 60, 38, WHITE);
     DrawText(TextFormat("%05i", score), 655, 100, 38, WHITE);
     DrawText("LEVEL", 640, 300, 38, WHITE);

@@ -11,6 +11,7 @@ struct Level {
     int cell_pixel_side = 50;
     int line_scan_count = 0;
     Color cell_color;
+    Color dark_transparent = { 50, 50, 60, 220 };
 
     int x_movement_timer = 0;
     int gravity = 53;
