@@ -20,6 +20,7 @@ struct Level {
 
     int score = 0;
     int lines_cleared_in_a_frame = 0;
+    bool lock_out = false;
 
 
     int grid[240] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -50,6 +51,7 @@ struct Level {
     void line_scan();
     void remove_line(int line);
     void add_score(int number_of_lines_cleared);
+    void clear_grid();
 
     void update();
     void render();

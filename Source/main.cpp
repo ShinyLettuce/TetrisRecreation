@@ -23,6 +23,17 @@ int main(void)
 
     Game_State game;
     game.game_state.push(Game_State::GAME_STATE::MAIN_MENU);
+
+    game.hills = LoadTexture("paralHills.png"); // make media & media init later
+    game.hills2 = game.hills;
+    game.sky = LoadTexture("paralsky.png");
+    game.car = LoadTexture("paralCar.png");
+    game.clouds = LoadTexture("paralCloud.png");
+    game.clouds2 = game.clouds;
+    game.lake = LoadTexture("paralLake.png");
+    game.pole = LoadTexture("paralPole.png");
+    game.title = LoadTexture("paralTitle.png");
+
     File_Manager file;
     file.write("Anteeksi, olen Ganondorf");
 

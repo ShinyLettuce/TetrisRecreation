@@ -5,6 +5,9 @@ void Level::init()
     player.random_piece();
     player.change_piece(player.next_grid, player.next_piece);
     player.random_piece();
+    clear_grid();
+    lock_out = false;
+
 }
 
 bool Level::piece_collision(int future_pos_x, int pos_y)
@@ -75,12 +78,13 @@ void Level::piece_movement()
         {
             player.pos.y++;
             gravity_counter = 0;
+            falling = false;
         }
         else
         {
+            falling = false;
             piece_lock();
         }
-        falling = false;
     }
 
     gravity_counter++;
@@ -106,6 +110,11 @@ void Level::piece_lock()
     player.pos = { 4,1 };
     player.rotation_index = 0;
     gravity_counter = 0;
+
+    if (piece_collision(static_cast<int>(player.pos.x), static_cast<int>(player.pos.y)))
+    {
+        lock_out = true;
+    }
 }
 
 void Level::line_scan()
@@ -171,6 +180,14 @@ void Level::add_score(int number_of_lines_cleared)
     }
 }
 
+void Level::clear_grid()
+{
+    for (int i = 0; i < grid_height - 1; i++)
+    {
+        remove_line(i);
+    }
+}
+
 void Level::update()
 {
     player.update();
@@ -217,7 +234,7 @@ void Level::render()
         {
             if (player.next_grid[j + i * 4] != 0)
             {
-                DrawRectangle(j * cell_pixel_side + 610, i * cell_pixel_side + 600, cell_pixel_side, cell_pixel_side, WHITE);
+                DrawRectangle(j * cell_pixel_side + 600, i * cell_pixel_side + 600, cell_pixel_side, cell_pixel_side, WHITE);
             }
         }
     }
