@@ -160,7 +160,7 @@ void Level::remove_line(int line)
         }
     }
     lines_cleared_total++;
-    if (lines_cleared_total % 10 == 9)
+    if (lines_cleared_total % 10 == 9 && level < 20)
     {
         level++;
         gravity_time = gravity_progression[level];
