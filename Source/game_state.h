@@ -2,6 +2,7 @@
 #include <stack>
 #include "level.h"
 #include "media.h"
+#include "main_menu.h"
 
 struct Game_State
 {
@@ -13,24 +14,12 @@ struct Game_State
 		HIGH_SCORE_SCREEN,
 	};
 
-
-	Vector2 hill_pos = { -190, 50 };
-	Vector2 hill_pos2 = { -1190, 50 };
-	Vector2 cloud_pos = {-190, 0};
-	Vector2 cloud_pos2 = {-1190, 0};
-	Vector2 car_pos = { 0,20 };
-	Vector2 pole_pos = { -100, 0 };
-	int car_counter = 0;
-	int cloud_counter = 0;
-	int hill_counter = 0;
-	int pole_counter = 0;
-
 	Level level;
+	Main_Menu menu;
 	std::stack<GAME_STATE> game_state;	
 
 	void game_screen();
 	void menu_screen();
-	void menu_render();
 	void high_score_screen();
 	void collision_screen();
 
