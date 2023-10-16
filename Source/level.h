@@ -14,13 +14,15 @@ struct Level {
     Color dark_transparent = { 50, 50, 60, 220 };
 
     int x_movement_timer = 0;
-    int gravity = 53;
-    int gravity_time = gravity;
+    int gravity_progression[21] = { 53, 49, 45, 41, 37, 33, 28, 22, 17, 11, 10, 9, 8, 7, 6, 6, 5, 5, 4, 4, 3 };
+    int gravity_time = gravity_progression[0];
     int gravity_counter = 0;
     bool falling = false;
 
     int score = 0;
+    int level = 0;
     int lines_cleared_in_a_frame = 0;
+    int lines_cleared_total = 0;
     bool lock_out = false;
 
 

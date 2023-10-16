@@ -6,6 +6,8 @@ void Level::init()
     player.change_piece(player.next_grid, player.next_piece);
     player.random_piece();
     clear_grid();
+    lines_cleared_total = 0;
+    level = 0;
     lock_out = false;
 
 }
@@ -49,7 +51,7 @@ void Level::piece_movement()
     }
     else if (player.input.y == 0)
     {
-        gravity_time = gravity;
+        gravity_time = gravity_progression[level];
     }
 
     if (!piece_collision(static_cast<int>(player.pos.x + player.input.x), static_cast<int>(player.pos.y)) &&
@@ -157,6 +159,13 @@ void Level::remove_line(int line)
             grid[j + i * grid_width] = grid[j + (i - 1) * grid_width];
         }
     }
+    lines_cleared_total++;
+    if (lines_cleared_total % 10 == 9)
+    {
+        level++;
+        gravity_time = gravity_progression[level];
+    }
+
 }
 
 void Level::add_score(int number_of_lines_cleared)
@@ -164,16 +173,16 @@ void Level::add_score(int number_of_lines_cleared)
     switch (number_of_lines_cleared)
     {
     case(1):
-        score += 40;
+        score += 40 * (level+1);
         break;
     case(2):
-        score += 100;
+        score += 100 * (level + 1);
         break;
     case(3):
-        score += 300;
+        score += 300 * (level + 1);
         break;
     case(4):
-        score += 1200;
+        score += 1200 * (level + 1);
         break;
     default:
         break;
@@ -245,7 +254,9 @@ void Level::render()
     DrawText("SCORE", 640, 60, 38, WHITE);
     DrawText(TextFormat("%05i", score), 655, 100, 38, WHITE);
     DrawText("LEVEL", 640, 300, 38, WHITE);
+    DrawText(TextFormat("%i", level), 640, 350, 38, WHITE);
     DrawText("LINES", 640, 400, 38, WHITE);
+    DrawText(TextFormat("%i", lines_cleared_total), 640, 450, 38, WHITE);
 
     player.render(level_pos);
 }
