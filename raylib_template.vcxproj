@@ -168,6 +168,7 @@
     <ClCompile Include="Source\level.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\math_util.cpp" />
+    <ClCompile Include="Source\media.cpp" />
     <ClCompile Include="Source\tetromino_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +176,7 @@
     <ClInclude Include="Source\game_state.h" />
     <ClInclude Include="Source\level.h" />
     <ClInclude Include="Source\math_util.h" />
+    <ClInclude Include="Source\media.h" />
     <ClInclude Include="Source\tetromino.h" />
     <ClInclude Include="Source\tetromino_controller.h" />
   </ItemGroup>

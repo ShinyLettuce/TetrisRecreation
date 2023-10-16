@@ -26,15 +26,15 @@ void Game_State::menu_screen()
 
 void Game_State::menu_render()
 {
-	DrawTexture(sky, 0, 0, WHITE);
-	DrawTexture(lake, 0, 10, WHITE);
-	DrawTexture(clouds, static_cast<int>(cloud_pos.x), static_cast<int>(cloud_pos.y), WHITE);
-	DrawTexture(clouds2, static_cast<int>(cloud_pos2.x), static_cast<int>(cloud_pos2.y), WHITE);
-	DrawTexture(hills, static_cast<int>(hill_pos.x), static_cast<int>(hill_pos.y), WHITE);
-	DrawTexture(hills2, static_cast<int>(hill_pos2.x), static_cast<int>(hill_pos2.y), WHITE);
-	DrawTexture(pole, static_cast<int>(pole_pos.x), static_cast<int>(pole_pos.y), WHITE);
-	DrawTexture(car, static_cast<int>(car_pos.x), static_cast<int>(car_pos.y), WHITE);
-	DrawTexture(title, 40, 500, WHITE);
+	DrawTexture(Media::sky, 0, 0, WHITE);
+	DrawTexture(Media::lake, 0, 10, WHITE);
+	DrawTexture(Media::clouds, static_cast<int>(cloud_pos.x), static_cast<int>(cloud_pos.y), WHITE);
+	DrawTexture(Media::clouds, static_cast<int>(cloud_pos2.x), static_cast<int>(cloud_pos2.y), WHITE);
+	DrawTexture(Media::hills, static_cast<int>(hill_pos.x), static_cast<int>(hill_pos.y), WHITE);
+	DrawTexture(Media::hills, static_cast<int>(hill_pos2.x), static_cast<int>(hill_pos2.y), WHITE);
+	DrawTexture(Media::pole, static_cast<int>(pole_pos.x), static_cast<int>(pole_pos.y), WHITE);
+	DrawTexture(Media::car, static_cast<int>(car_pos.x), static_cast<int>(car_pos.y), WHITE);
+	DrawTexture(Media::title, 40, 500, WHITE);
 
 	DrawText("press x to start", 490, 700, 36, WHITE);
 	DrawText("press c to test", 490, 750, 36, WHITE);

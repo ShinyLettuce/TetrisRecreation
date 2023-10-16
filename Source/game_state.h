@@ -1,6 +1,7 @@
 #pragma once
 #include <stack>
 #include "level.h"
+#include "media.h"
 
 struct Game_State
 {
@@ -23,16 +24,6 @@ struct Game_State
 	int cloud_counter = 0;
 	int hill_counter = 0;
 	int pole_counter = 0;
-
-	Texture2D hills;
-	Texture2D hills2;
-	Texture2D sky;
-	Texture2D car;
-	Texture2D clouds;
-	Texture2D clouds2;
-	Texture2D lake;
-	Texture2D pole;
-	Texture2D title;
 
 	Level level;
 	std::stack<GAME_STATE> game_state;	
