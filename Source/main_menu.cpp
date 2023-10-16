@@ -1,20 +1,7 @@
 #include "main_menu.h"
 
-void Main_Menu::render()
+void Main_Menu::update() 
 {
-	DrawTexture(Media::sky, 0, 0, WHITE);
-	DrawTexture(Media::lake, 0, 10, WHITE);
-	DrawTexture(Media::clouds, static_cast<int>(cloud_pos.x), static_cast<int>(cloud_pos.y), WHITE);
-	DrawTexture(Media::clouds, static_cast<int>(cloud_pos2.x), static_cast<int>(cloud_pos2.y), WHITE);
-	DrawTexture(Media::hills, static_cast<int>(hill_pos.x), static_cast<int>(hill_pos.y), WHITE);
-	DrawTexture(Media::hills, static_cast<int>(hill_pos2.x), static_cast<int>(hill_pos2.y), WHITE);
-	DrawTexture(Media::pole, static_cast<int>(pole_pos.x), static_cast<int>(pole_pos.y), WHITE);
-	DrawTexture(Media::car, static_cast<int>(car_pos.x), static_cast<int>(car_pos.y), WHITE);
-	DrawTexture(Media::title, 40, 500, WHITE);
-
-	DrawText("press x to start", 490, 700, 36, WHITE);
-	DrawText("press c to test", 490, 750, 36, WHITE);
-
 	car_counter++;
 	cloud_counter++;
 	hill_counter++;
@@ -77,4 +64,17 @@ void Main_Menu::render()
 		car_pos.y = 20;
 		car_counter = 0;
 	}
+}
+
+void Main_Menu::render()
+{
+	DrawTexture(Media::sky, 0, 0, WHITE);
+	DrawTexture(Media::lake, 0, 10, WHITE);
+	DrawTexture(Media::clouds, static_cast<int>(cloud_pos.x), static_cast<int>(cloud_pos.y), WHITE);
+	DrawTexture(Media::clouds, static_cast<int>(cloud_pos2.x), static_cast<int>(cloud_pos2.y), WHITE);
+	DrawTexture(Media::hills, static_cast<int>(hill_pos.x), static_cast<int>(hill_pos.y), WHITE);
+	DrawTexture(Media::hills, static_cast<int>(hill_pos2.x), static_cast<int>(hill_pos2.y), WHITE);
+	DrawTexture(Media::pole, static_cast<int>(pole_pos.x), static_cast<int>(pole_pos.y), WHITE);
+	DrawTexture(Media::car, static_cast<int>(car_pos.x), static_cast<int>(car_pos.y), WHITE);
+	DrawTexture(Media::title, 40, 500, WHITE);
 }

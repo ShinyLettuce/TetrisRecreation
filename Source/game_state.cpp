@@ -3,6 +3,7 @@
 void Game_State::game_screen()
 {
 	level.update();
+	menu.update();
 	menu.render();
 	level.render();
 
@@ -15,7 +16,14 @@ void Game_State::game_screen()
 
 void Game_State::menu_screen()
 {
+	menu.update();
 	menu.render();
+
+	if (game_state.top() == GAME_STATE::MAIN_MENU)
+	{
+		DrawText("press x to start", 490, 700, 36, WHITE);
+		DrawText("press c to test", 490, 750, 36, WHITE);
+	}
 
 	if (IsKeyDown(KEY_X)) //change button
 	{

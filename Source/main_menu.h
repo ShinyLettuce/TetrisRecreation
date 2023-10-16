@@ -15,5 +15,6 @@ struct Main_Menu {
 	int hill_counter = 0;
 	int pole_counter = 0;
 
+	void update();
 	void render();
 };
