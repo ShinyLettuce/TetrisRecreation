@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\colission.cpp" />
     <ClCompile Include="Source\file.cpp" />
     <ClCompile Include="Source\game_state.cpp" />
     <ClCompile Include="Source\level.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Source\tetromino_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\collision.h" />
     <ClInclude Include="Source\file.h" />
     <ClInclude Include="Source\game_state.h" />
     <ClInclude Include="Source\level.h" />

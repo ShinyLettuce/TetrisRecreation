@@ -53,7 +53,8 @@ void Tetromino_controller::piece_rotation()
     }
 
     //piece correction
-    if (current_piece == PIECES::S)
+
+    if (current_piece == PIECES::S || current_piece == PIECES::I)
     {
         if (orientation == 0)
         {

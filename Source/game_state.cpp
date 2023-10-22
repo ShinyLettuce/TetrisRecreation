@@ -30,6 +30,11 @@ void Game_State::menu_screen()
 		level.init();
 		game_state.push(Game_State::GAME_STATE::GAME_SCREEN);
 	}
+	if (IsKeyDown(KEY_C)) //change button
+	{
+		level.init();
+		game_state.push(Game_State::GAME_STATE::COLLISION_SCREEN);
+	}
 }
 
 void Game_State::high_score_screen()
@@ -39,7 +44,8 @@ void Game_State::high_score_screen()
 
 void Game_State::collision_screen()
 {
-
+	collision.update();
+	collision.render();
 }
 
 void Game_State::update()
@@ -55,6 +61,7 @@ void Game_State::update()
 	case GAME_STATE::HIGH_SCORE_SCREEN:
 		break;
 	case GAME_STATE::COLLISION_SCREEN:
+		collision_screen();
 		break;
 	}
 }

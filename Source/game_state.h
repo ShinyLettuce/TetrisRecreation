@@ -3,6 +3,7 @@
 #include "level.h"
 #include "media.h"
 #include "main_menu.h"
+#include "collision.h"
 
 struct Game_State
 {
@@ -16,6 +17,7 @@ struct Game_State
 
 	Level level;
 	Main_Menu menu;
+	Collision_Test collision;
 	std::stack<GAME_STATE> game_state;	
 
 	void game_screen();
