@@ -32,7 +32,6 @@ void Game_State::menu_screen()
 	}
 	if (IsKeyDown(KEY_C)) //change button
 	{
-		level.init();
 		game_state.push(Game_State::GAME_STATE::COLLISION_SCREEN);
 	}
 }
