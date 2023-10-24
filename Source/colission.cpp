@@ -1,54 +1,38 @@
 #include "collision.h"
 
-bool Collision_Test::aabb_circle_collision(Vector2 aabb_pos, int aabb_width, int aabb_height, Vector2 circle_pos, int circle_radius)
+bool Collision_Test::aabb_circle_collision(Vector2 aabb_pos, int aabb_width, int aabb_height, Vector2 circle_pos, int circle_radius) // TRIED AND TRUE
 {
+	Vector2 closest_pos = { 0,0 };
+	
 	if (circle_pos.x < aabb_pos.x)
 	{
-		if (circle_pos.y > aabb_pos.y && circle_pos.y < aabb_pos.y + aabb_height)
-		{
-			//4
-		}
-		else if (circle_pos.y < aabb_pos.y)
-		{
-			//1
-			if (sqrt((circle_pos.x - aabb_pos.x) * (circle_pos.x - aabb_pos.x) + (circle_pos.y - aabb_pos.y) * (circle_pos.y - aabb_pos.y)) <= circle_radius)
-			{
-				return true;
-			}
-		}
-		else if (circle_pos.y > aabb_pos.y + aabb_height)
-		{
-			//6
-		}
+		closest_pos.x = aabb_pos.x;
 	}
-	if (circle_pos.x > aabb_pos.x && circle_pos.x < aabb_width)
+	else if (circle_pos.x > aabb_pos.x + aabb_width)
 	{
-		if (circle_pos.y < aabb_pos.y)
-		{
-			//2
-		}
-		else if (circle_pos.y > aabb_pos.y + aabb_height)
-		{
-			//7
-		}
+		closest_pos.x = aabb_pos.x + aabb_width;
 	}
-	if (circle_pos.x > aabb_pos.x + aabb_width)
+	else
 	{
-		if (circle_pos.y > aabb_pos.y && circle_pos.y < aabb_pos.y + aabb_height)
-		{
-			//5
-		}
-		else if (circle_pos.y < aabb_pos.y)
-		{
-			//3
-		}
-		else if (circle_pos.y > aabb_pos.y + aabb_height)
-		{
-			//8
-		}
+		closest_pos.x = circle_pos.x;
+	}
+	if (circle_pos.y < aabb_pos.y)
+	{
+		closest_pos.y = aabb_pos.y;
+	}
+	else if (circle_pos.y > aabb_pos.y + aabb_height)
+	{
+		closest_pos.y = aabb_pos.y + aabb_height;
+	}
+	else
+	{
+		closest_pos.y = circle_pos.y;
+	}
+	if (sqrt((circle_pos.x - closest_pos.x) * (circle_pos.x - closest_pos.x) + (circle_pos.y - closest_pos.y) * (circle_pos.y - closest_pos.y)) <= circle_radius)
+	{
+		return true;
 	}
 	return false;
-
 }
 
 void Collision_Test::update()
