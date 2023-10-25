@@ -35,6 +35,27 @@ bool Collision_Test::aabb_circle_collision(Vector2 aabb_pos, int aabb_width, int
 	return false;
 }
 
+bool Collision_Test::circle_circle_collision(Vector2 circle1_pos, int circle1_radius, Vector2 circle2_pos, int circle2_radius)
+{
+	if (sqrt((circle1_pos.x - circle2_pos.x) * (circle1_pos.x - circle2_pos.x) + (circle1_pos.y - circle2_pos.y) * (circle1_pos.y - circle2_pos.y)) <= (circle1_radius + circle2_radius))
+	{
+		return true;
+	}
+	return false;
+}
+
+bool Collision_Test::aabb_aabb_collision(Vector2 aabb1_pos, int aabb1_width, int aabb1_height, Vector2 aabb2_pos, int aabb2_width, int aabb2_height)
+{
+	if (aabb1_pos.x >= aabb2_pos.x + aabb2_width &&
+		aabb1_pos.x + aabb1_width <= aabb2_pos.x &&
+		aabb1_pos.y >= aabb2_pos.y + aabb2_height &&
+		aabb1_pos.y + aabb2_height >= aabb2_pos.y)
+	{
+		return true;
+	}
+	return false;
+}
+
 void Collision_Test::update()
 {
 	if (sqrt((GetMouseX() - obj1_pos.x) * (GetMouseX() - obj1_pos.x) + (GetMouseY() - obj1_pos.y) * (GetMouseY() - obj1_pos.y)) <= circle_rad && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
