@@ -48,8 +48,8 @@ bool Collision_Test::aabb_aabb_collision(Vector2 aabb1_pos, int aabb1_width, int
 {
 	if (aabb1_pos.x >= aabb2_pos.x + aabb2_width &&
 		aabb1_pos.x + aabb1_width <= aabb2_pos.x &&
-		aabb1_pos.y >= aabb2_pos.y + aabb2_height &&
-		aabb1_pos.y + aabb2_height >= aabb2_pos.y)
+		aabb1_pos.y <= aabb2_pos.y + aabb2_height &&
+		aabb1_pos.y + aabb1_height >= aabb2_pos.y)
 	{
 		return true;
 	}
@@ -64,10 +64,20 @@ void Collision_Test::update()
 		obj1_pos.x = (float)GetMouseX();
 		obj1_pos.y =(float)GetMouseY();
 	}
+	if (GetMouseX() <= obj2_pos.x + aabbox_width &&
+		GetMouseX() >= obj2_pos.x &&
+		GetMouseY() <= obj2_pos.y + aabbox_height &&
+		GetMouseY() >= obj2_pos.y && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+	{
+		aabbox_color = RED;
+		obj2_pos.x = (float)GetMouseX() - aabbox_width/2;
+		obj2_pos.y = (float)GetMouseY() - aabbox_height/2;
+	}
 
 	if (aabb_circle_collision(obj2_pos, aabbox_width, aabbox_height, obj1_pos, circle_rad))
 	{
 		circle_color = GREEN;
+		aabbox_color = GREEN;
 	}
 
 }
@@ -75,7 +85,7 @@ void Collision_Test::update()
 void Collision_Test::render()
 {
 	DrawCircle((int)obj1_pos.x, (int)obj1_pos.y, (float)circle_rad, circle_color);
-	DrawRectangle((int)obj2_pos.x, (int)obj2_pos.y, aabbox_width, aabbox_height, WHITE);
+	DrawRectangle((int)obj2_pos.x, (int)obj2_pos.y, aabbox_width, aabbox_height, aabbox_color);
 
 	DrawText("Collision screen", 100, 100, 60, WHITE);
 }
