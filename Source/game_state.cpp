@@ -9,7 +9,7 @@ void Game_State::game_screen()
 
 	if (level.lock_out)
 	{
-		game_state.pop();
+		game_state.push(GAME_STATE::HIGH_SCORE_SCREEN);
 		level.score = 0;
 	}
 }
@@ -38,7 +38,7 @@ void Game_State::menu_screen()
 
 void Game_State::high_score_screen()
 {
-
+	DrawText("High Score screen", 100, 100, 60, WHITE);
 }
 
 void Game_State::collision_screen()
@@ -58,6 +58,7 @@ void Game_State::update()
 		game_screen();
 		break;
 	case GAME_STATE::HIGH_SCORE_SCREEN:
+		high_score_screen();
 		break;
 	case GAME_STATE::COLLISION_SCREEN:
 		collision_screen();
