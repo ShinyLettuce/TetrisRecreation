@@ -8,6 +8,7 @@ void Level::init()
     clear_grid();
     lines_cleared_total = 0;
     level = 0;
+    score = 0;
     lock_out = false;
 
 }

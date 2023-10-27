@@ -10,7 +10,6 @@ void Game_State::game_screen()
 	if (level.lock_out)
 	{
 		game_state.push(GAME_STATE::HIGH_SCORE_SCREEN);
-		level.score = 0;
 	}
 }
 
@@ -38,7 +37,21 @@ void Game_State::menu_screen()
 
 void Game_State::high_score_screen()
 {
-	DrawText("High Score screen", 100, 100, 60, WHITE);
+	high_score_file = file.read_high_score();
+	if (std::stoi(high_score_file) < level.score)
+	{
+		file.write_high_score(level.score);
+	}
+
+	high_score_file = file.read_high_score();
+
+	std::cout << high_score_file;
+
+	game_state.pop();
+	game_state.pop();
+	//DrawText("High Score screen", 100, 100, 60, WHITE);
+	//DrawText(TextFormat("%i", level.score), 100, 250, 60, WHITE);
+
 }
 
 void Game_State::collision_screen()

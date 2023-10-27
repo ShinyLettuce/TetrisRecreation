@@ -1,6 +1,5 @@
 #include "raylib.h"
 #include "game_state.h"
-#include "file.h"
 
 
 int main(void)
@@ -22,9 +21,6 @@ int main(void)
 
     Game_State game;
     game.game_state.push(Game_State::GAME_STATE::MAIN_MENU);
-
-    File_Manager file;
-    file.write("Anteeksi, olen Ganondorf");
 
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {

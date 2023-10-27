@@ -2,13 +2,11 @@
 #include <fstream>
 #include <filesystem>
 #include <string>
+#include <iostream>
 
 struct File_Manager {
     const char* level_file = "../Assets/Text/Levels.txt"; //ENI note: ../ => goes to the previous folder
 
-    std::fstream stream;
-
-    void load();
-
-    void write(std::string text);
+    std::string read_high_score();
+    void write_high_score(int new_score);
 };
