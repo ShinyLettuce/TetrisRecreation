@@ -47,6 +47,7 @@ void Game_State::high_score_screen()
 		if (e.score < level.score)
 		{
 			high_score.list.insert(high_score.list.begin() + i, e);
+			break;
 		}
 	}
 
