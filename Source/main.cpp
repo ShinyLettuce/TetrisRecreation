@@ -1,7 +1,6 @@
 #include "raylib.h"
 #include "game_state.h"
 
-
 int main(void)
 {    
     // Initialization
@@ -17,10 +16,29 @@ int main(void)
 
     InitAudioDevice();
     auto sound = LoadSound("./hitHurt.ogg");
+    
     Media::media_init();
-
     Game_State game;
+
+    std::fstream score_list(".\\Assets\\text\\highscore.txt");
+    while (!score_list.eof())
+    {
+        High_Score_Entry h;
+        score_list >> h.name;
+        score_list >> h.score;
+        if (score_list.eof()) break;
+        game.high_score.list.push_back(h);
+    }
+    score_list.close();
+
+    for (High_Score_Entry e : game.high_score.list)
+    {
+        std::cout << e.name;
+        std::cout << e.score;
+    }
+
     game.game_state.push(Game_State::GAME_STATE::MAIN_MENU);
+
 
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {

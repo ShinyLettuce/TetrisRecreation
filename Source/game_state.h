@@ -4,6 +4,7 @@
 #include "file.h"
 #include "level.h"
 #include "media.h"
+#include "high_score.h"
 #include "main_menu.h"
 #include "collision.h"
 
@@ -21,6 +22,7 @@ struct Game_State
 
 	Level level;
 	Main_Menu menu;
+	High_Score_List high_score;
 	Collision_Test collision;
 	File_Manager file;
 	std::stack<GAME_STATE> game_state;	

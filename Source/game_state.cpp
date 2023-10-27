@@ -37,41 +37,24 @@ void Game_State::menu_screen()
 
 void Game_State::high_score_screen()
 {
-	std::stringstream ss;
-	std::vector<int> scores = {};
-	ss << file.read_high_score();
+	High_Score_Entry e;
+	e.name = "QQQ";
+    e.score = level.score;
+	//high_score.list.push_back(e);
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < high_score.list.size(); i++)
 	{
-		int num;
-		ss >> num;
-		scores.push_back(num);
-	}
-
-	std::cout << ss.str();
-
-	for (int i = 0; i < scores.size(); i++)
-	{
-		if (level.score > scores[i])
+		if (e.score < level.score)
 		{
-			scores.pop_back();
-			scores.insert(scores.begin() + i, level.score);
-			break;
+			high_score.list.insert(high_score.list.begin() + i, e);
 		}
 	}
 
-	ss.str("");
-	ss.clear();
-
-	for (int s : scores)
+	for (High_Score_Entry n : high_score.list)
 	{
-		ss << s << "\n";
+		std::cout << e.name;
+		std::cout << e.score;
 	}
-	
-	file.write_high_score(ss.str());
-	
-	std::cout << file.read_high_score();
-
 	game_state.pop();
 	game_state.pop();
 	//DrawText("High Score screen", 100, 100, 60, WHITE);

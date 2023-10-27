@@ -166,6 +166,7 @@
     <ClCompile Include="Source\colission.cpp" />
     <ClCompile Include="Source\file.cpp" />
     <ClCompile Include="Source\game_state.cpp" />
+    <ClCompile Include="Source\high_score.cpp" />
     <ClCompile Include="Source\level.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\main_menu.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="Source\collision.h" />
     <ClInclude Include="Source\file.h" />
     <ClInclude Include="Source\game_state.h" />
+    <ClInclude Include="Source\high_score.h" />
     <ClInclude Include="Source\level.h" />
     <ClInclude Include="Source\main_menu.h" />
     <ClInclude Include="Source\math_util.h" />
