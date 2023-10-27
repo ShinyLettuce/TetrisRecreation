@@ -1,5 +1,6 @@
 #pragma once
 #include <stack>
+#include <sstream>
 #include "file.h"
 #include "level.h"
 #include "media.h"

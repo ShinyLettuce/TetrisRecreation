@@ -22,19 +22,20 @@ std::string File_Manager::read_high_score()
 	}
 }
 
-void File_Manager::write_high_score(int new_score)
+void File_Manager::write_high_score(std::string new_score) //new_list?
 {
-	std::ofstream score_list(".\\Assets\\text\\highscore.txt");
+	std::fstream score_list(".\\Assets\\text\\highscore.txt");
 	std::string score;
-	score = std::to_string(new_score);
 
 	if (score_list.is_open())
 	{
-		score_list << score + "\n";
+		score_list << new_score;
+		score_list.close();
 	}
 	else
 	{
 		std::cout << "Unable to open high score file";
 	}
+	score_list.close();
 
 }
