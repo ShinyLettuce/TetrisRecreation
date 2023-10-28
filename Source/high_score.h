@@ -2,14 +2,18 @@
 #include "raylib.h"
 #include "level.h"
 #include <iostream>
-//#include <string>
+#include <algorithm>
 #include <vector>
 
 struct High_Score_Entry 
 {
-	//std::string name;
 	char name[4] = {};
 	int score = 0;
+
+	bool operator > (const High_Score_Entry& stru) const
+	{
+		return (score > stru.score);
+	}
 };
 
 struct High_Score_List

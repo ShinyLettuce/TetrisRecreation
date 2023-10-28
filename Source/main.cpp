@@ -26,8 +26,8 @@ int main(void)
         High_Score_Entry h;
         score_list >> h.name;
         score_list >> h.score;
-        if (score_list.eof()) break;
         game.high_score.list.push_back(h);
+        if (score_list.eof()) break;
     }
     score_list.close();
 

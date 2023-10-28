@@ -38,14 +38,11 @@ void High_Score_List::enter_name_update(int score)
 		}
 		e.score = score;
 
-		for (int i = 0; i < list.size(); i++)
+		list.push_back(e);
+		std::sort(list.begin(), list.end(), std::greater<High_Score_Entry>());
+		if (list.size() > 5)
 		{
-			if (list[i].score < e.score)
-			{
-				list.pop_back();
-				list.insert(list.begin() + i, e);
-				break;
-			}
+			list.pop_back();
 		}
 
 		for (High_Score_Entry n : list)
