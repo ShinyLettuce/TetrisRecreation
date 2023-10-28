@@ -55,6 +55,14 @@ int main(void)
     CloseAudioDevice();
     Media::media_unload();
     
+    score_list.open(".\\Assets\\text\\highscore.txt");
+    for(High_Score_Entry h : game.high_score.list)
+    {
+        score_list << h.name;
+        score_list << h.score;
+    }
+    score_list.close();
+
     // De-Initialization
     //--------------------------------------------------------------------------------------
     CloseWindow();        // Close window and OpenGL context
