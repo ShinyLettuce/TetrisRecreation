@@ -10,6 +10,7 @@ void Game_State::game_screen()
 	if (level.lock_out)
 	{
 		game_state.push(GAME_STATE::HIGH_SCORE_SCREEN);
+		high_score.init();
 	}
 }
 
@@ -37,30 +38,18 @@ void Game_State::menu_screen()
 
 void Game_State::high_score_screen()
 {
-	High_Score_Entry e;
-	e.name = "QQQ";
-    e.score = level.score;
-
-	for (int i = 0; i < high_score.list.size(); i++)
+	if (!high_score.score_saved)
 	{
-		if (high_score.list[i].score < e.score)
-		{
-			high_score.list.pop_back();
-			high_score.list.insert(high_score.list.begin() + i, e);
-			break;
-		}
+		high_score.enter_name_update(level.score);
 	}
 
-	for (High_Score_Entry n : high_score.list)
-	{
-		std::cout << n.name;
-		std::cout << n.score;
-	}
-	game_state.pop();
-	game_state.pop();
-	//DrawText("High Score screen", 100, 100, 60, WHITE);
-	//DrawText(TextFormat("%i", level.score), 100, 250, 60, WHITE);
+	high_score.render(level.score);
 
+	if (high_score.score_saved && IsKeyPressed(KEY_T))
+	{
+		game_state.pop();
+		game_state.pop();
+	}
 }
 
 void Game_State::collision_screen()

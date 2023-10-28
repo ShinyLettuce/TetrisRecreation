@@ -21,6 +21,7 @@ int main(void)
     Game_State game;
 
     std::fstream score_list(".\\Assets\\text\\highscore.txt");
+    //for(int i = 0; i < game.high_score.list_size; i++)
     while (!score_list.eof())
     {
         High_Score_Entry h;
