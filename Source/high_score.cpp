@@ -24,7 +24,10 @@ void High_Score_List::enter_name_update(int score)
 	if (IsKeyPressed(KEY_BACKSPACE))
 	{
 		letter_count--;
-		if (letter_count < 0) letter_count = 0;
+		if (letter_count < 0)
+		{
+			letter_count = 0;
+		}
 		name[letter_count] = '\0';
 	}
 
