@@ -11,4 +11,5 @@ struct Media {
 	static Texture2D title;
 
 	static void media_init();
+	static void media_unload();
 };

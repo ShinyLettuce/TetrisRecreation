@@ -18,3 +18,14 @@ void Media::media_init()
     pole = LoadTexture("paralPole.png");
     title = LoadTexture("paralTitle.png");
 }
+
+void Media::media_unload()
+{
+    UnloadTexture(hills);
+    UnloadTexture(sky);
+    UnloadTexture(car);
+    UnloadTexture(clouds);
+    UnloadTexture(lake);
+    UnloadTexture(pole);
+    UnloadTexture(title);
+}
