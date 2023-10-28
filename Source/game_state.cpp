@@ -40,12 +40,12 @@ void Game_State::high_score_screen()
 	High_Score_Entry e;
 	e.name = "QQQ";
     e.score = level.score;
-	//high_score.list.push_back(e);
 
 	for (int i = 0; i < high_score.list.size(); i++)
 	{
-		if (e.score < level.score)
+		if (high_score.list[i].score < e.score)
 		{
+			high_score.list.pop_back();
 			high_score.list.insert(high_score.list.begin() + i, e);
 			break;
 		}
@@ -53,8 +53,8 @@ void Game_State::high_score_screen()
 
 	for (High_Score_Entry n : high_score.list)
 	{
-		std::cout << e.name;
-		std::cout << e.score;
+		std::cout << n.name;
+		std::cout << n.score;
 	}
 	game_state.pop();
 	game_state.pop();
