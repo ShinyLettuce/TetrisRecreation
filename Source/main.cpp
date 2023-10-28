@@ -21,13 +21,11 @@ int main(void)
     Game_State game;
 
     std::fstream score_list(".\\Assets\\text\\highscore.txt");
-    while (!score_list.eof())
+    
+    High_Score_Entry h;
+    while (score_list >> h.name >> h.score)
     {
-        High_Score_Entry h;
-        score_list >> h.name;
-        score_list >> h.score;
         game.high_score.list.push_back(h);
-        if (score_list.eof()) break;
     }
     score_list.close();
 
@@ -56,10 +54,10 @@ int main(void)
     Media::media_unload();
     
     score_list.open(".\\Assets\\text\\highscore.txt");
-    for(High_Score_Entry h : game.high_score.list)
+    for(High_Score_Entry saved : game.high_score.list)
     {
-        score_list << h.name;
-        score_list << h.score;
+        score_list << saved.name;
+        score_list << saved.score;
     }
     score_list.close();
 

@@ -11,7 +11,7 @@ struct Tetromino_controller
     int x_movement_speed = 23;
     int piece_grid_side = 4;
     int rotation_index = 0;
-    Color piece_color;
+    Color piece_color = WHITE;
 
     Tetromino shapes;
 
