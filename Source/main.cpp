@@ -29,7 +29,7 @@ int main(void)
     }
     score_list.close();
 
-    for (High_Score_Entry e : game.high_score.list)
+    for (High_Score_Entry e : game.high_score.list) // remember to remove
     {
         std::cout << e.name;
         std::cout << e.score;
