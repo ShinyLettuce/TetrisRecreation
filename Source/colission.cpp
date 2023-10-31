@@ -91,6 +91,11 @@ bool Collision_Test::aabb_aabb_collision(Vector2 aabb1_pos, Vector2 aabb1_w_h, V
 	return false;
 }
 
+bool circle_line_collision(Vector2 line_pos1, Vector2 line_pos2, Vector2 circle_pos, int circle_radius)
+{
+	//std::inner_product(line_pos1.x, line_pos1.y, line_pos2.x, 0.0);
+}
+
 void Collision_Test::update()
 {
 	if (IsKeyPressed(KEY_ONE))
@@ -158,6 +163,18 @@ void Collision_Test::update()
 		}
 		break;
 	case(Collision_Type::CIRCLE_V_LINE):
+		if (point_circle_collision(GetMouseX(), GetMouseY(), line_pos1, 10) && IsMouseButtonDown(MOUSE_LEFT_BUTTON) && !obj1_selected)
+		{
+			clamp_circle_to_mouse(line_pos1, obj2_selected);
+		}
+		if (point_circle_collision(GetMouseX(), GetMouseY(), line_pos2, 10) && IsMouseButtonDown(MOUSE_LEFT_BUTTON) && !obj1_selected)
+		{
+			clamp_circle_to_mouse(line_pos2, obj2_selected);
+		}
+		if (point_circle_collision(GetMouseX(), GetMouseY(), obj1_pos, circle_rad) && IsMouseButtonDown(MOUSE_LEFT_BUTTON) && !obj2_selected)
+		{
+			clamp_circle_to_mouse(obj1_pos, obj1_selected);
+		}
 		break;
 	case(Collision_Type::AABB_V_AABB):
 		if (point_aabb_collision(GetMouseX(), GetMouseY(), obj1_pos, aabbox_width_height) && IsMouseButtonDown(MOUSE_LEFT_BUTTON) && !obj2_selected)
@@ -190,6 +207,10 @@ void Collision_Test::render()
 		DrawCircleV(obj2_pos, (float)circle_rad, obj2_color);
 		break;
 	case(Collision_Type::CIRCLE_V_LINE):
+		DrawCircleV(obj1_pos, (float)circle_rad, obj1_color);
+		DrawLineV(line_pos1, line_pos2, obj2_color);
+		DrawCircleV(line_pos1, 10, obj2_color);
+		DrawCircleV(line_pos2, 10, obj2_color);
 		break;
 	case(Collision_Type::AABB_V_AABB):
 		DrawRectangleV(obj1_pos, aabbox_width_height, obj1_color);
