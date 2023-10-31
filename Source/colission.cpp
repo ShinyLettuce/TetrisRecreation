@@ -91,9 +91,20 @@ bool Collision_Test::aabb_aabb_collision(Vector2 aabb1_pos, Vector2 aabb1_w_h, V
 	return false;
 }
 
-bool circle_line_collision(Vector2 line_pos1, Vector2 line_pos2, Vector2 circle_pos, int circle_radius)
+bool Collision_Test::circle_line_collision(Vector2 line_position1, Vector2 line_position2, Vector2 circle_pos, int circle_radius)
 {
-	//std::inner_product(line_pos1.x, line_pos1.y, line_pos2.x, 0.0);
+	float t = (Vector2DotProduct(Vector2Subtract(circle_pos, line_position1), Vector2Subtract(line_position2, line_position1)) / (Vector2DotProduct(Vector2Subtract(line_position2, line_position1), Vector2Subtract(line_position2, line_position1))));
+	if (t > 1)
+	{
+		t = 1;
+	}
+	if (t < 0)
+	{
+		t = 0;
+	}
+	Vector2 closest_point = Vector2Add(line_position1,Vector2Scale(Vector2Subtract(line_position2, line_position1),t));
+	
+	return point_circle_collision((int)closest_point.x, (int)closest_point.y,circle_pos,circle_radius);
 }
 
 void Collision_Test::update()
@@ -112,6 +123,9 @@ void Collision_Test::update()
 	}
 	if (IsKeyPressed(KEY_THREE))
 	{
+		obj1_pos = { 200,300 };
+		line_pos1 = { 500,100 };
+		line_pos2 = { 500,400 };
 		collision_type = Collision_Type::CIRCLE_V_LINE;
 	}
 	if (IsKeyPressed(KEY_FOUR))
@@ -174,6 +188,11 @@ void Collision_Test::update()
 		if (point_circle_collision(GetMouseX(), GetMouseY(), obj1_pos, circle_rad) && IsMouseButtonDown(MOUSE_LEFT_BUTTON) && !obj2_selected)
 		{
 			clamp_circle_to_mouse(obj1_pos, obj1_selected);
+		}
+		if(circle_line_collision(line_pos1, line_pos2, obj1_pos, circle_rad))
+		{
+			obj1_color = GREEN;
+			obj2_color = GREEN;
 		}
 		break;
 	case(Collision_Type::AABB_V_AABB):

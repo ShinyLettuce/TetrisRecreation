@@ -2,6 +2,8 @@
 #include "raylib.h"
 #include <cmath>
 #include <numeric>
+#include "raymath.h"
+#include <iostream>
 
 struct Collision_Test
 {
