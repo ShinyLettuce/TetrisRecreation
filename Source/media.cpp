@@ -18,7 +18,6 @@ void Media::media_init()
     lake = LoadTexture("paralLake.png");
     pole = LoadTexture("paralPole.png");
     title = LoadTexture("paralTitle.png");
-
     anim = LoadTexture("anim.png");
 }
 
@@ -31,6 +30,5 @@ void Media::media_unload()
     UnloadTexture(lake);
     UnloadTexture(pole);
     UnloadTexture(title);
-
     UnloadTexture(anim);
 }

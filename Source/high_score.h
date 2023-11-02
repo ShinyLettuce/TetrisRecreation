@@ -22,7 +22,6 @@ struct High_Score_List
 	const int list_size = 5;
 	char name[4] = "\0";
 	int letter_count = 0;
-
 	bool score_saved = false;
 
 	void init();
