@@ -48,12 +48,6 @@ void High_Score_List::enter_name_update(int score)
 			list.pop_back();
 		}
 
-		//for (High_Score_Entry n : list)
-		//{
-		//	std::cout << n.name;
-		//	std::cout << n.score;
-		//}
-
 		score_saved = true;
 	}
 

@@ -22,7 +22,7 @@ int main(void)
     Game_State game;
 
     std::fstream score_list(".\\Assets\\text\\highscore.txt");
-    
+
     High_Score_Entry h;
     while (score_list >> h.name >> h.score)
     {
@@ -30,14 +30,7 @@ int main(void)
     }
     score_list.close();
 
-    //for (High_Score_Entry e : game.high_score.list) // remember to remove
-    //{
-    //    std::cout << e.name;
-    //    std::cout << e.score;
-    //}
-
     game.game_state.push(Game_State::GAME_STATE::MAIN_MENU);
-
 
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
