@@ -7,6 +7,7 @@ Texture2D Media::clouds;
 Texture2D Media::lake;
 Texture2D Media::pole;
 Texture2D Media::title;
+Texture2D Media::anim;
 
 void Media::media_init()
 {
@@ -17,6 +18,8 @@ void Media::media_init()
     lake = LoadTexture("paralLake.png");
     pole = LoadTexture("paralPole.png");
     title = LoadTexture("paralTitle.png");
+
+    anim = LoadTexture("anim.png");
 }
 
 void Media::media_unload()
@@ -28,4 +31,6 @@ void Media::media_unload()
     UnloadTexture(lake);
     UnloadTexture(pole);
     UnloadTexture(title);
+
+    UnloadTexture(anim);
 }

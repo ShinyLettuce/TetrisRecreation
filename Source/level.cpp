@@ -142,6 +142,7 @@ void Level::line_scan()
     if (lines_cleared_in_a_frame > 0)
     {
         add_score(lines_cleared_in_a_frame);
+        anim_should_play = true;
         lines_cleared_in_a_frame = 0;
     }
 }
@@ -249,6 +250,7 @@ void Level::render()
         }
     }
 
+
     DrawRectangle(600, 45, 190, 100, dark_transparent);
     DrawRectangle(600, 285, 190, 220, dark_transparent);
 
@@ -258,6 +260,20 @@ void Level::render()
     DrawText(TextFormat("%i", level), 640, 350, 38, WHITE);
     DrawText("LINES", 640, 400, 38, WHITE);
     DrawText(TextFormat("%i", lines_cleared_total), 640, 450, 38, WHITE);
+
+    if (anim_should_play)
+    {
+        anim_counter++;
+        if (anim_counter % 6 == 0)
+        {
+            texture_x += 100;
+            if (texture_x > 300)
+            {
+                texture_x = 0;
+            }
+        }
+        DrawTexturePro(Media::anim,{texture_x,0,100,100}, {550,50,100,100}, {0,0}, 0, WHITE);
+    }
 
     player.render(level_pos);
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "tetromino_controller.h"
+#include "media.h"
 
 struct Level {
     Vector2 level_pos{ 0,-50 };
@@ -24,6 +25,10 @@ struct Level {
     int lines_cleared_in_a_frame = 0;
     int lines_cleared_total = 0;
     bool lock_out = false;
+
+    bool anim_should_play = false;
+    int anim_counter = 0;
+    float texture_x = 0;
 
 
     int grid[240] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,

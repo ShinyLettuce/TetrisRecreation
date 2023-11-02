@@ -9,6 +9,7 @@ struct Media {
 	static Texture2D lake;
 	static Texture2D pole;
 	static Texture2D title;
+	static Texture2D anim;
 
 	static void media_init();
 	static void media_unload();
