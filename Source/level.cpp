@@ -261,7 +261,7 @@ void Level::render()
     DrawText("LINES", 640, 400, 38, WHITE);
     DrawText(TextFormat("%i", lines_cleared_total), 640, 450, 38, WHITE);
 
-    if (anim_should_play)
+    if (anim_should_play) // buncha magic stuff here
     {
         anim_counter++;
         if (anim_counter % 6 == 0)
@@ -270,6 +270,7 @@ void Level::render()
             if (texture_x > 300)
             {
                 texture_x = 0;
+                anim_should_play = false;
             }
         }
         DrawTexturePro(Media::anim,{texture_x,0,100,100}, {550,50,100,100}, {0,0}, 0, WHITE);

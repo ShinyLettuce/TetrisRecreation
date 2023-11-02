@@ -25,10 +25,7 @@ struct High_Score_List
 
 	bool score_saved = false;
 
-
 	void init();
-
 	void enter_name_update(int score);
-	void list_showcase_update();
 	void render(int score);
 };
