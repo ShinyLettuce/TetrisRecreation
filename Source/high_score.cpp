@@ -73,18 +73,19 @@ void High_Score_List::render(int score)
 		ClearBackground({ 55,148,110 });
 		DrawRectangle(0, 0, 50, 900, { 90, 90, 90, 255 });
 		DrawRectangle(760, 0, 50, 900, { 90, 90, 90, 255 });
-		DrawRectangle(0, 850, 810, 200, { 202, 201, 170, 255 });
+		DrawRectangle(0, 850, 810, 50, { 202, 201, 170, 255 });
 		DrawRectangle(0, 0, 810, 80, { 202, 201, 170, 255 });
 
 		DrawRectangle(0, 35, 200, 10, { 190, 70, 115, 255 });
 		DrawRectangle(610, 35, 200, 10, { 190, 70, 115, 255 });
+		DrawRectangle(0, 875, 480, 5, { 190, 70, 115, 255 });
 
 		DrawText("HIGHSCORE", 220, 10, 64, DARKBLUE);
 		DrawText("press T to exit", 500, 860, 30, DARKBLUE);
 		for (int i = 0; i < list.size(); i++)
 		{
-			DrawText(list[i].name, 200, 150 + 150 * i, 80, { 26,100,70,255 });
-			DrawText(TextFormat("%i", list[i].score), 450, 150 + 150 * i, 80, { 26,100,70,255 });
+			DrawText(list[i].name, 200, 130 + 150 * i, 80, { 26,100,70,255 });
+			DrawText(TextFormat("%i", list[i].score), 450, 130 + 150 * i, 80, { 26,100,70,255 });
 		}
 	}
 }

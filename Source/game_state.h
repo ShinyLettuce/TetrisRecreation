@@ -1,7 +1,5 @@
 #pragma once
 #include <stack>
-#include <sstream>
-#include "file.h"
 #include "level.h"
 #include "media.h"
 #include "high_score.h"
@@ -24,7 +22,6 @@ struct Game_State
 	Main_Menu menu;
 	High_Score_List high_score;
 	Collision_Test collision;
-	File_Manager file;
 	std::stack<GAME_STATE> game_state;	
 
 	void game_screen();
