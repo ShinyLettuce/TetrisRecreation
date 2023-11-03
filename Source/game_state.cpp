@@ -25,12 +25,12 @@ void Game_State::menu_screen()
 		DrawText("press c to test", 490, 750, 36, WHITE);
 	}
 
-	if (IsKeyDown(KEY_X)) //change button
+	if (IsKeyDown(KEY_X))
 	{
 		level.init();
 		game_state.push(Game_State::GAME_STATE::GAME_SCREEN);
 	}
-	if (IsKeyDown(KEY_C)) //change button
+	if (IsKeyDown(KEY_C))
 	{
 		game_state.push(Game_State::GAME_STATE::COLLISION_SCREEN);
 	}

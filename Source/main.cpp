@@ -37,9 +37,8 @@ int main(void)
             fread(&h.score, sizeof(h.score), 1, fp_input);
             game.high_score.list.push_back(h);
         }
-        
+        fclose(fp_input);
     }
-    fclose(fp_input);
 
     game.game_state.push(Game_State::GAME_STATE::MAIN_MENU);
 
@@ -75,8 +74,8 @@ int main(void)
         {
             fwrite(&saved, sizeof(saved), 1, fp_output);
         }
+        fclose(fp_output);
     }
-    fclose(fp_output);
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
