@@ -10,7 +10,6 @@ void Level::init()
     level = 0;
     score = 0;
     lock_out = false;
-
 }
 
 bool Level::piece_collision(int future_pos_x, int pos_y)
@@ -89,7 +88,6 @@ void Level::piece_movement()
             piece_lock();
         }
     }
-
     gravity_counter++;
 }
 
@@ -167,7 +165,6 @@ void Level::remove_line(int line)
         level++;
         gravity_time = gravity_progression[level];
     }
-
 }
 
 void Level::add_score(int number_of_lines_cleared)
@@ -234,7 +231,6 @@ void Level::render()
             default:
                 break;
             }
-
                 DrawRectangle(j * cell_pixel_side + static_cast<int>(level_pos.x), i * cell_pixel_side + static_cast<int>(level_pos.y), cell_pixel_side, cell_pixel_side, cell_color);
         }
     }
@@ -249,7 +245,6 @@ void Level::render()
             }
         }
     }
-
 
     DrawRectangle(600, 45, 190, 100, dark_transparent);
     DrawRectangle(600, 285, 190, 220, dark_transparent);
