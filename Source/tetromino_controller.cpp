@@ -23,9 +23,9 @@ void Tetromino_controller::piece_rotation()
         orientation = 3;
     }
 
-    for (int y = 0; y < 4; y++)
+    for (int y = 0; y < piece_grid_side; y++)
     {
-        for (int x = 0; x < 4; x++)
+        for (int x = 0; x < piece_grid_side; x++)
         {
             switch (orientation)
             {
@@ -176,7 +176,6 @@ void Tetromino_controller::random_piece()
             }
         }
     }
-
 }
 
 void Tetromino_controller::update()
