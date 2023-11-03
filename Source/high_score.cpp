@@ -43,7 +43,7 @@ void High_Score_List::enter_name_update(int score)
 
 		list.push_back(e);
 		std::sort(list.begin(), list.end(), std::greater<High_Score_Entry>());
-		if (list.size() > 5)
+		while(list.size() > 5)
 		{
 			list.pop_back();
 		}

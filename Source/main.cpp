@@ -21,21 +21,12 @@ int main(void)
 
     Game_State game;
 
-    //std::fstream score_list(".\\Assets\\text\\highscore.txt");
     High_Score_Entry h;
-    //while (score_list >> h.name >> h.score)
-    //{
-    //    game.high_score.list.push_back(h);
-    //}
-    //score_list.close();
-
     FILE* fp_input;
     errno_t errt;
-    //score_list.open(".\\Assets\\text\\highscore.txt");
     errt = fopen_s(&fp_input, ".\\Assets\\text\\highscore.bin", "rb");
     if (errt != 0)
     {
-        //nothing
     }
     else
     {
@@ -64,27 +55,28 @@ int main(void)
         //----------------------------------------------------------------------------------
     }
 
+    for (High_Score_Entry test : game.high_score.list)
+    {
+        std::cout << test.name;
+        std::cout << test.score;
+    }
+
     CloseAudioDevice();
     Media::media_unload();
     FILE* fp_output;
     errno_t err;
-    //score_list.open(".\\Assets\\text\\highscore.txt");
     err = fopen_s(&fp_output,".\\Assets\\text\\highscore.bin", "wb");
     if (err != 0)
     {
-        //nothing
     }
     else
     {
         for(High_Score_Entry saved : game.high_score.list)
         {
-             //score_list << saved.name;
-             //score_list << saved.score;
-
             fwrite(&saved, sizeof(saved), 1, fp_output);
         }
     }
-    //score_list.close();
+    fclose(fp_output);
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
