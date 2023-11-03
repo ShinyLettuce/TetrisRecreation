@@ -56,6 +56,11 @@ void Game_State::collision_screen()
 {
 	collision.update();
 	collision.render();
+
+	if (IsKeyPressed(KEY_T))
+	{
+		game_state.pop();
+	}
 }
 
 void Game_State::update()
