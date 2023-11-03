@@ -238,4 +238,6 @@ void Collision_Test::render()
 	}
 
 	DrawText("Collision screen", 100, 100, 60, WHITE);
+	DrawText("press 1-4 to test", 150, 500, 40, WHITE);
+	DrawText("press t to exit", 150, 550, 40, WHITE);
 }
