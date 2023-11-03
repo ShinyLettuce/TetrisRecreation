@@ -24,7 +24,7 @@ bool Level::piece_collision(int future_pos_x, int pos_y)
         for (int j = 0; j < player.piece_grid_side; j++)
         {
             if (player.current_grid[j + i * player.piece_grid_side] != 0 &&
-                grid[(future_pos_x + j + pos_y * grid_width + (i * 12))] != 0)
+                grid[(future_pos_x + j + pos_y * grid_width + (i * grid_width))] != 0)
             {
                 return true;
             }
