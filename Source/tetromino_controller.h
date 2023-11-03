@@ -5,14 +5,15 @@
 
 struct Tetromino_controller
 {
+    Color piece_color = WHITE;
     Vector2 pos = { 4,1 };
+    const int segment_pixel_side = 50;
+    const int piece_grid_side = 4;
+
     Vector2 input = { 0,0 };
     int rotation_input = 0;
-    int x_movement_speed = 23;
-    const int piece_grid_side = 4;
     int rotation_index = 0;
-    Color piece_color = WHITE;
-
+    int x_movement_speed = 23;
     Tetromino shapes;
 
     enum class PIECES
@@ -47,9 +48,8 @@ struct Tetromino_controller
 
     void piece_rotation();
     void change_piece(int new_piece[16], PIECES new_current_piece);
-
     void random_piece();
 
     void update();
-    void render(Vector2 level_pos);
+    void render(Vector2 level_grid_pos, int cell_pixel_side);
 };

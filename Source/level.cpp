@@ -276,5 +276,5 @@ void Level::render()
         DrawTexturePro(Media::anim,{texture_x,0,100,100}, {550,50,100,100}, {0,0}, 0, WHITE);
     }
 
-    player.render(level_pos);
+    player.render(level_pos, cell_pixel_side);
 }

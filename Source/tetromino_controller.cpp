@@ -1,6 +1,5 @@
 #include "tetromino_controller.h"
 
-
 void Tetromino_controller::piece_rotation()
 {
     int orientation = 0;
@@ -207,13 +206,13 @@ void Tetromino_controller::update()
     }
 }
 
-void Tetromino_controller::render(Vector2 level_pos)
+void Tetromino_controller::render(Vector2 level_grid_pos, int cell_pixel_side)
 {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < piece_grid_side; i++)
     {
-        for (int j = 0; j < 4; j++)
+        for (int j = 0; j < piece_grid_side; j++)
         {
-            switch (current_grid[j + i * 4])
+            switch (current_grid[j + i * piece_grid_side])
             {
             case(0):    piece_color = WHITE;
                 break;
@@ -236,9 +235,13 @@ void Tetromino_controller::render(Vector2 level_pos)
             default:
                 break;
             }
-            if (current_grid[j + i * 4] != 0)
+            if (current_grid[j + i * piece_grid_side] != 0)
             {
-                DrawRectangle(( static_cast<int>(pos.x) * 50 ) + (j * 50) + static_cast<int>(level_pos.x), (static_cast<int>(pos.y) * 50) + (i * 50) + static_cast<int>(level_pos.y), 50, 50, piece_color);
+                DrawRectangle( (static_cast<int>(pos.x) * cell_pixel_side) + (j * cell_pixel_side) + static_cast<int>(level_grid_pos.x),
+                               (static_cast<int>(pos.y) * cell_pixel_side) + (i * cell_pixel_side) + static_cast<int>(level_grid_pos.y),
+                                segment_pixel_side,
+                                segment_pixel_side,
+                                piece_color );
             }
         }
     }
