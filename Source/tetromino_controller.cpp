@@ -116,16 +116,16 @@ void Tetromino_controller::piece_rotation()
 
 void Tetromino_controller::change_piece(int new_piece[16], PIECES new_current_piece)
 {
-        for (int i = 0; i < piece_grid_side; i++)
+    for (int i = 0; i < piece_grid_side; i++)
+    {
+        for (int j = 0; j < piece_grid_side; j++)
         {
-            for (int j = 0; j < piece_grid_side; j++)
-            {
-                current_grid[j + i * piece_grid_side] = new_piece[j + i * piece_grid_side];
-                reference_grid[j + i * piece_grid_side] = new_piece[j + i * piece_grid_side];
+            current_grid[j + i * piece_grid_side] = new_piece[j + i * piece_grid_side];
+            reference_grid[j + i * piece_grid_side] = new_piece[j + i * piece_grid_side];
 
-            }
         }
-        current_piece = new_current_piece;
+    }
+    current_piece = new_current_piece;
 }
 
 void Tetromino_controller::random_piece()
@@ -241,6 +241,34 @@ void Tetromino_controller::render(Vector2 level_grid_pos, int cell_pixel_side)
                                 segment_pixel_side,
                                 segment_pixel_side,
                                 piece_color );
+            }
+
+            switch (next_grid[j + i * piece_grid_side])
+            {
+            case(0):    next_piece_color = WHITE;
+                break;
+            case(1):    next_piece_color = GRAY;
+                break;
+            case(2):    next_piece_color = BLUE;
+                break;
+            case(3):    next_piece_color = RED;
+                break;
+            case(4):    next_piece_color = YELLOW;
+                break;
+            case(5):    next_piece_color = GREEN;
+                break;
+            case(6):    next_piece_color = PURPLE;
+                break;
+            case(7):    next_piece_color = DARKBLUE;
+                break;
+            case(8):    next_piece_color = ORANGE;
+                break;
+            default:
+                break;
+            }
+            if (next_grid[j + i * piece_grid_side] != 0)
+            {
+                DrawRectangle(j * cell_pixel_side + 600, i * cell_pixel_side + 600, segment_pixel_side, segment_pixel_side, next_piece_color);
             }
         }
     }

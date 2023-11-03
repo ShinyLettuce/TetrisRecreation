@@ -172,7 +172,7 @@ void Level::add_score(int number_of_lines_cleared)
     switch (number_of_lines_cleared)
     {
     case(1):
-        score += 40 * (level+1);
+        score += 40 * (level + 1);
         break;
     case(2):
         score += 100 * (level + 1);
@@ -232,17 +232,6 @@ void Level::render()
                 break;
             }
                 DrawRectangle(j * cell_pixel_side + static_cast<int>(level_pos.x), i * cell_pixel_side + static_cast<int>(level_pos.y), cell_pixel_side, cell_pixel_side, cell_color);
-        }
-    }
-
-    for (int i = 0; i < 4; i++)
-    {
-        for (int j = 0; j < 4; j++)
-        {
-            if (player.next_grid[j + i * 4] != 0)
-            {
-                DrawRectangle(j * cell_pixel_side + 600, i * cell_pixel_side + 600, cell_pixel_side, cell_pixel_side, WHITE);
-            }
         }
     }
 

@@ -6,6 +6,7 @@
 struct Tetromino_controller
 {
     Color piece_color = WHITE;
+    Color next_piece_color = WHITE;
     Vector2 pos = { 4,1 };
     const int segment_pixel_side = 50;
     const int piece_grid_side = 4;
