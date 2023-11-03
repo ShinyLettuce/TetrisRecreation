@@ -130,7 +130,7 @@ void Tetromino_controller::change_piece(int new_piece[16], PIECES new_current_pi
 
 void Tetromino_controller::random_piece()
 {
-    int* temp = nullptr; // change name or something
+    int* temp = nullptr;
 
     switch (GetRandomValue(1, 7))
     {
@@ -180,7 +180,7 @@ void Tetromino_controller::random_piece()
 
 void Tetromino_controller::update()
 {
-    input = { 0,0 };            //After lockdown, force player to click down again
+    input = { 0,0 };
     rotation_input = 0;
 
     if (IsKeyDown(KEY_LEFT))

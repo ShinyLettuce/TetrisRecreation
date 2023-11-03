@@ -19,7 +19,7 @@ struct Tetromino_controller
 
     enum class PIECES
     {
-        NO_PIECE, //not to happen during game
+        NO_PIECE,
         L,
         I,
         T,
