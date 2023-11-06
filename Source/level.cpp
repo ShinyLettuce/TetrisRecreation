@@ -108,6 +108,10 @@ void Level::piece_lock()
 
     player.change_piece(player.next_grid, player.next_piece);
     player.random_piece();
+    if (player.next_piece == player.current_piece) //reroll once to lessen odds of the same piece appearing twice
+    {
+        player.random_piece();
+    }
     player.pos = { 4,1 };
     player.rotation_index = 0;
     gravity_counter = 0;
