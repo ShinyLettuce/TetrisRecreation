@@ -173,19 +173,24 @@ void Level::remove_line(int line)
 
 void Level::add_score(int number_of_lines_cleared)
 {
+    constexpr int one_line_score = 40;
+    constexpr int two_line_score = 100;
+    constexpr int three_line_score = 300;
+    constexpr int four_line_score = 1200;
+
     switch (number_of_lines_cleared)
     {
     case(1):
-        score += 40 * (level + 1);
+        score += one_line_score * (level + 1);
         break;
     case(2):
-        score += 100 * (level + 1);
+        score += two_line_score * (level + 1);
         break;
     case(3):
-        score += 300 * (level + 1);
+        score += three_line_score * (level + 1);
         break;
     case(4):
-        score += 1200 * (level + 1);
+        score += four_line_score * (level + 1);
         break;
     default:
         break;
