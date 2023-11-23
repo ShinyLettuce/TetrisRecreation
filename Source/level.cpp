@@ -47,7 +47,7 @@ void Level::piece_movement()
 
     if (player.input.y == 1)
     {
-        gravity_time = 3;
+        gravity_time = soft_drop_speed;
     }
     else if (player.input.y == 0)
     {
@@ -124,6 +124,8 @@ void Level::piece_lock()
 
 void Level::line_scan()
 {
+    const int inner_grid_width = grid_width - 2;
+
     for (int i = 0; i < grid_height; i++)
     {
         for (int j = 0; j < grid_width; j++)
@@ -132,7 +134,7 @@ void Level::line_scan()
             {
                 line_scan_count++;
             }
-            if (line_scan_count == 10)
+            if (line_scan_count == inner_grid_width)
             {
                 remove_line(i);
                 lines_cleared_in_a_frame++;
@@ -173,28 +175,7 @@ void Level::remove_line(int line)
 
 void Level::add_score(int number_of_lines_cleared)
 {
-    constexpr int one_line_score = 40;
-    constexpr int two_line_score = 100;
-    constexpr int three_line_score = 300;
-    constexpr int four_line_score = 1200;
-
-    switch (number_of_lines_cleared)
-    {
-    case(1):
-        score += one_line_score * (level + 1);
-        break;
-    case(2):
-        score += two_line_score * (level + 1);
-        break;
-    case(3):
-        score += three_line_score * (level + 1);
-        break;
-    case(4):
-        score += four_line_score * (level + 1);
-        break;
-    default:
-        break;
-    }
+    score += line_based_score[number_of_lines_cleared - 1] * (level + 1);
 }
 
 void Level::clear_grid()
