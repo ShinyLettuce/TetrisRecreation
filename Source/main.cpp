@@ -4,16 +4,12 @@
 
 int main(void)
 {    
-    // Initialization
-    //--------------------------------------------------------------------------------------
     const int screenWidth = 810;
     const int screenHeight = 900;
 
     InitWindow(screenWidth, screenHeight, "Tetris");
 
     SetTargetFPS(60);              
-
-    //--------------------------------------------------------------------------------------
 
     InitAudioDevice();
     auto sound = LoadSound("./hitHurt.ogg");
@@ -42,7 +38,7 @@ int main(void)
 
     game.game_state.push(Game_State::GAME_STATE::MAIN_MENU);
 
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!WindowShouldClose())
     {
 
         BeginDrawing();
@@ -51,7 +47,6 @@ int main(void)
         game.update();
 
         EndDrawing();
-        //----------------------------------------------------------------------------------
     }
 
     for (High_Score_Entry test : game.high_score.list)
@@ -77,10 +72,7 @@ int main(void)
         fclose(fp_output);
     }
 
-    // De-Initialization
-    //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
-    //--------------------------------------------------------------------------------------
+    CloseWindow();
 
     return 0;
 }
